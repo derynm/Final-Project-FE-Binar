@@ -6,6 +6,8 @@ import { Register } from '../Views/Auth/Register';
 import { AddProduct } from '../Views/Product/AddProduct';
 import { EditProduct } from '../Views/Product/EditProduct';
 import { DeleteProduct } from '../Views/Product/DeleteProduct';
+import { NavbarComponent } from '../Components/NavbarComponent';
+import { FooterComponent } from '../Components/FooterComponent';
 
 export const Routers = () => {
     return (
@@ -20,6 +22,10 @@ export const Routers = () => {
             <Route path="/add-product" element={<AddProduct />} />
             <Route path="/edit-product" element={<EditProduct />} />
             <Route path="/delete-product" element={<DeleteProduct />} />
+
+            {/* Component */}
+            <Route path="/navbar-component" element={<NavbarComponent />} />
+            <Route path="/footer-component" element={<FooterComponent />} />
         </Routes>
     )
 };
