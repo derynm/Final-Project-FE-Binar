@@ -87,7 +87,7 @@ export const Auth = () => {
         </div>
 
         <button type="submit" className="button-auth mb-5">
-          Login
+          Masuk
         </button>
 
         <div className="d-flex justify-content-center to-register">
