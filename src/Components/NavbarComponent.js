@@ -5,7 +5,7 @@ import Navbar from 'react-bootstrap/Navbar';
 export const NavbarComponent = () => {
     return (
         <div>
-            <div className='container-fluid mb-4'>
+            <div className='container mb-4'>
                 <Navbar bg="light" expand="md">
                     <Container fluid>
                         <Navbar.Brand href="#">HOME</Navbar.Brand>

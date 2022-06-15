@@ -1,0 +1,68 @@
+.auth-main {
+  height: 100vh;
+}
+
+.auth-content {
+  height: 100%;
+}
+
+.auth-left-side {
+  height: 100%;
+  background-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0),
+      rgb(255, 255, 255)
+    ),
+    url(../../Assets/Img/maria-fernanda-pissioli-DTZV8WDM1Ho-unsplash.jpg);
+  background-size: cover;
+  background-position: 0 60%;
+  background-repeat: no-repeat;
+  padding: 0px !important;
+}
+
+.auth-right-side {
+  padding: 0px !important;
+}
+
+.auth-right-side-form {
+  flex-grow: 1;
+  flex-shrink: 1;
+  max-width: 500px;
+}
+
+.button-auth {
+  background-color: #43c4f7;
+  color: white;
+  border: none;
+  width: 100%;
+  border-radius: 8px;
+  padding: 8px;
+}
+
+.button-auth:hover {
+  background-color: #3dbaeb;
+}
+
+.to-register p {
+    font-weight: bolder;
+    color: #3dbaeb;
+    cursor: pointer;
+}
+
+@media (max-width: 426px) { 
+    .auth-left-side {
+      height: 18rem;
+        margin-bottom: 30px;
+        background-position: 0 60%;
+        background-image: linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0),
+            rgb(255, 255, 255)
+          ),
+          url(../../Assets/Img/maria-fernanda-pissioli-DTZV8WDM1Ho-unsplash.jpg);
+    }
+
+    .auth-right-side-form {
+        padding: 0px 24px;
+    }
+ }
