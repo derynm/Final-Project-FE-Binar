@@ -3,7 +3,7 @@ import React from 'react';
 export const FooterComponent = () => {
     return (
         <div>
-            <div className='container-fluid bg-light'>
+            <div className='container bg-light'>
                 {/* garis */}
                 <div className='card border-0 bg-light'>
                     <div className='card-body'>
