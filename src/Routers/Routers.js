@@ -5,11 +5,13 @@ import { AddProduct } from "../Views/Product/AddProduct";
 import { EditProduct } from "../Views/Product/EditProduct";
 import { DeleteProduct } from "../Views/Product/DeleteProduct";
 import { Auth } from "../Views/Auth/Auth";
+import { HomeSlider } from "../Assets/Components/HomeSlider/HomeSlider";
 
 export const Routers = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
+      <Route path="/cobahomeslider" element={<HomeSlider />} />
 
       {/* Auth */}
       <Route path="/auth" element={<Auth/>} />
