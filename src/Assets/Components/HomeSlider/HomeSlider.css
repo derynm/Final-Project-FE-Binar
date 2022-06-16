@@ -1,0 +1,13 @@
+.carousel1{
+    /* padding-left: 100px;
+    padding-right: 100px; */
+}
+.imgcarousel{
+    object-fit: cover;
+    position: relative;
+    top: -200px;
+}
+.carousel2{
+    height: 500px;
+    width: 1000px;
+}
