@@ -5,6 +5,8 @@ import { AddProduct } from "../Views/Product/AddProduct";
 import { EditProduct } from "../Views/Product/EditProduct";
 import { DeleteProduct } from "../Views/Product/DeleteProduct";
 import { Auth } from "../Views/Auth/Auth";
+import { Login } from "../Views/Auth/Login";
+import { Register } from "../Views/Auth/Register";
 import { HomeSlider } from "../Assets/Components/HomeSlider/HomeSlider";
 
 export const Routers = () => {
@@ -14,7 +16,10 @@ export const Routers = () => {
       <Route path="/cobahomeslider" element={<HomeSlider />} />
 
       {/* Auth */}
-      <Route path="/auth" element={<Auth/>} />
+      <Route path="/auth" element={<Auth />}>
+        <Route path="login" element={<Login />} />
+        <Route path="register" element={<Register />} />
+      </Route>
 
       {/* Product */}
       <Route path="/add-product" element={<AddProduct />} />
