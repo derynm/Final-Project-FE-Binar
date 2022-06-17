@@ -19,6 +19,26 @@ export const Register = () => {
     role: null,
   });
 
+  const [isActive, setisActive] = useState({
+    penjual: false,
+    pembeli: false,
+  });
+
+  //fungsi untuk aktifkan tombol
+  const toggleActive = (role) => {
+    if (role === "penjual") {
+      setisActive({
+        penjual: true,
+        pembeli: false,
+      })
+    }else (
+      setisActive({
+        penjual: false,
+        pembeli: true,
+      })
+    )
+  };
+
   //function untuk cek apakah semua inputan sudah terisi
   const disableSubmit = () => {
     if (
@@ -96,10 +116,15 @@ export const Register = () => {
         <div className="col-6">
           <button
             type="button"
-            className="button-auth"
+            className={
+              isActive.pembeli
+                ? "button-role-selected"
+                : "button-role-not-selected"
+            }
             value="pembeli"
             onClick={(e) => {
               handleState(e, "role");
+              toggleActive("pembeli");
             }}
           >
             <span className="fw-bold">Pembeli</span>
@@ -108,10 +133,15 @@ export const Register = () => {
         <div className="col-6">
           <button
             type="button"
-            className="button-auth"
+            className={
+              isActive.penjual
+                ? "button-role-selected"
+                : "button-role-not-selected"
+            }
             value="penjual"
             onClick={(e) => {
               handleState(e, "role");
+              toggleActive("penjual");
             }}
           >
             <span className="fw-bold">Penjual</span>
