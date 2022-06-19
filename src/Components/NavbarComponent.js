@@ -1,12 +1,13 @@
 import React from 'react';
 import { Container, Nav, Form, FormControl, Button } from 'react-bootstrap';
 import Navbar from 'react-bootstrap/Navbar';
+import '../Assets/Css/style.css';
 
 export const NavbarComponent = () => {
     return (
         <div>
-            <div className='container mb-4'>
-                <Navbar bg="light" expand="md">
+            <div className='container nav-footer-bg mb-4'>
+                <Navbar className='nav-footer-bg' expand="md">
                     <Container fluid>
                         <Navbar.Brand href="#">HOME</Navbar.Brand>
                         <Navbar.Toggle aria-controls="navbarScroll" />
