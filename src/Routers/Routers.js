@@ -16,10 +16,7 @@ export const Routers = () => {
       <Route path="/cobahomeslider" element={<HomeSlider />} />
 
       {/* Auth */}
-      <Route path="/auth" element={<Auth />}>
-        <Route path="login" element={<Login />} />
-        <Route path="register" element={<Register />} />
-      </Route>
+      <Route path="/auth" element={<Auth />} />
 
       {/* Product */}
       <Route path="/add-product" element={<AddProduct />} />
