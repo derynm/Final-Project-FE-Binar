@@ -31,6 +31,7 @@
 }
 
 .button-auth {
+  font-weight: bolder;
   background-color: #43c4f7;
   color: white;
   border: none;
@@ -40,6 +41,7 @@
 }
 
 .button-role-not-selected {
+  font-weight: bolder;
   background-color: white;
   color: #43c4f7;
   border: solid 2px #43c4f7;
@@ -49,12 +51,13 @@
 }
 
 .button-role-selected {
+  font-weight: bolder;
   background-color: #43c4f7;
   color: white;
   border: none;
   width: 100%;
   border-radius: 8px;
-  padding: 8px;
+  padding: 10px;
 }
 
 .button-auth:disabled{

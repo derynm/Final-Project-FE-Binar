@@ -8,15 +8,20 @@ import { Auth } from "../Views/Auth/Auth";
 import { Login } from "../Views/Auth/Login";
 import { Register } from "../Views/Auth/Register";
 import { HomeSlider } from "../Assets/Components/HomeSlider/HomeSlider";
+import { CardHomePage } from "../Assets/Components/CardHomePage/CardHomePage";
 
 export const Routers = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/cobahomeslider" element={<HomeSlider />} />
+      <Route path="/cobacard" element={<CardHomePage />} />
 
       {/* Auth */}
-      <Route path="/auth" element={<Auth />} />
+      <Route path="/auth" element={<Auth />}>
+        <Route path="login" element={<Login />} />
+        <Route path="register" element={<Register />} />
+      </Route>
 
       {/* Product */}
       <Route path="/add-product" element={<AddProduct />} />
