@@ -31,6 +31,7 @@
 }
 
 .button-auth {
+  font-weight: bolder;
   background-color: #43c4f7;
   color: white;
   border: none;
@@ -39,6 +40,33 @@
   padding: 8px;
 }
 
+.button-role-not-selected {
+  font-weight: bolder;
+  background-color: white;
+  color: #43c4f7;
+  border: solid 2px #43c4f7;
+  width: 100%;
+  border-radius: 8px;
+  padding: 8px;
+}
+
+.button-role-selected {
+  font-weight: bolder;
+  background-color: #43c4f7;
+  color: white;
+  border: none;
+  width: 100%;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.button-auth:disabled{
+  background-color: #7d8182;
+}
+
+.button-auth:disabled:hover{
+  background-color: #7d8182;
+}
 .button-auth:hover {
   background-color: #3dbaeb;
 }
@@ -51,9 +79,9 @@
 
 @media (max-width: 426px) { 
     .auth-left-side {
-      height: 18rem;
+      height: 14rem;
         margin-bottom: 30px;
-        background-position: 0 60%;
+        background-position: 0 50%;
         background-image: linear-gradient(
             to bottom,
             rgba(0, 0, 0, 0),
