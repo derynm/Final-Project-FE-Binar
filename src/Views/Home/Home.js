@@ -1,7 +1,12 @@
-import React from 'react'
+import React from "react";
+import { FooterComponent } from "../../Assets/Components/Footer/FooterComponent";
+import { NavbarComponent } from "../../Assets/Components/NavBar/NavbarComponent";
 
 export const Home = () => {
-    return (
-        <div>Home</div>
-    )
-}
+  return (
+    <div>
+      <NavbarComponent />
+      <FooterComponent />
+    </div>
+  );
+};
