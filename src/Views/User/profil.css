@@ -1,39 +1,39 @@
 .avatar {
-    max-width: 300px;
-    max-height: 300px;
-    border-radius: 50%;
-}
-
-.profil-right {
-    padding: 0px 120px !important;
-}
-
-.profil-main {
-    height: 100%;
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  border: 3px solid #676767;
+  object-fit: contain;
 }
 
 .profil-content {
-    height: 100%;
-    margin-top: 60px;
-    padding: 20px 0px;
+  height: 100%;
+  margin-top: 60px;
+  padding: 20px 0px;
+}
+
+.profil-right {
+  padding: 20px 120px !important;
+  border-left: 1px solid rgba(0, 0, 0, 0.339);
 }
 
 @media (max-width: 426px) {
-    .profil-right {
-        margin-top: 40px;
-        padding: 0px 24px;
-    }
-    .avatar {
-        max-width: 160px;
-        max-height: 160px;
-        border-radius: 50%;
-    }
+  .profil-right {
+    margin-top: 40px;
+    padding: 0px 24px;
+  }
+  .avatar {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+  }
 
-    .profil-right {
-        padding: 0px 24px !important;
-    }
+  .profil-right {
+    padding: 0px 24px !important;
+    margin-top: 40px !important;
+  }
 
-    .profil-content {
-        margin-top: 20px;
-    }
+  .profil-content {
+    margin-top: 20px;
+  }
 }

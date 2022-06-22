@@ -7,6 +7,7 @@ import Daerah from "../../Assets/Data_Daerah/Data_Daerah";
 export const Profil = () => {
   //state untuk menampung hasil inputan
   const [ProfilState, setProfilState] = useState({
+    foto: null,
     nama: null,
     provinsi: null,
     kota: null,
@@ -64,10 +65,18 @@ export const Profil = () => {
 
   //fungsi untuk memasukan data dari inputan ke dalam state
   const handleInput = (e, prop) => {
-    setProfilState({
-      ...ProfilState,
-      [prop]: e.target.value,
-    });
+    //khusus untuk handle inputn foto
+    if (prop === "foto") {
+      setProfilState({
+        ...ProfilState,
+        [prop]: e.target.files[0],
+      });
+    } else {
+      setProfilState({
+        ...ProfilState,
+        [prop]: e.target.value,
+      });
+    }
   };
 
   return (
@@ -77,8 +86,22 @@ export const Profil = () => {
         <form>
           {console.log(ProfilState)}
           <div className="row">
-            <div className="col col-lg-4 col-sm-12 col-12 d-flex justify-content-center">
-              <img src={avatar} alt="avatar-account" className="avatar" />
+            <div className="col col-lg-4 col-sm-12 col-12 d-flex flex-column align-items-center justify-content-center">
+              <img
+                src={
+                  ProfilState.foto === null
+                    ? avatar
+                    : URL.createObjectURL(ProfilState.foto)
+                }
+                alt="avatar-account"
+                className="avatar"
+              />
+              <input
+                type={"file"}
+                onChange={(e) => {
+                  handleInput(e, "foto");
+                }}
+              />
             </div>
             <div className="col col-lg-8 col-sm-12 col-12 profil-right">
               <div className="mb-3">
