@@ -1,0 +1,11 @@
+.profil-right {
+    padding: 0px 80px;
+}
+
+
+@media (max-width: 426px) {
+    .profil-right {
+        margin-top: 40px;
+        padding: 0px 24px;
+    }
+}

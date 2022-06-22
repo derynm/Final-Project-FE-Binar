@@ -1,0 +1,21 @@
+.nav-second {
+  height: 64px;
+  background-color: cadetblue;
+}
+
+.nav-content {
+  height: 100%;
+}
+
+.nav-content-title {
+  padding: 0px !important;
+}
+
+.nav-content-logo {
+  padding: 0px !important;
+}
+
+.try {
+  background-color: blue;
+  width: 100%;
+}
