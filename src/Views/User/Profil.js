@@ -84,7 +84,7 @@ export const Profil = () => {
       <NavbarSecond />
       <div className="container-sm profil-content">
         <form>
-          {console.log(ProfilState)}
+          {/* {console.log(ProfilState)} */}
           <div className="row">
             <div className="col col-lg-4 col-sm-12 col-12 d-flex flex-column align-items-center justify-content-center profil-left">
               <img

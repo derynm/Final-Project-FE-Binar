@@ -8,7 +8,7 @@ export const NavbarSecond = () => {
   return (
     <div className="container-fluid nav-second">
     <div className="nav-content d-flex justify-content-between align-items-center">
-      <div>{isMobile ?(<IconMenu />):(<span>Sneakers.</span>)}</div>
+      <div>{isMobile ?(<IconMenu />):(<span className="nav-content-logo">Sneakers.</span>)}</div>
       <div><span className="page-name-second">Info Akun</span></div>
     </div>
 
