@@ -86,7 +86,7 @@ export const Profil = () => {
         <form>
           {console.log(ProfilState)}
           <div className="row">
-            <div className="col col-lg-4 col-sm-12 col-12 d-flex flex-column align-items-center justify-content-center">
+            <div className="col col-lg-4 col-sm-12 col-12 d-flex flex-column align-items-center justify-content-center profil-left">
               <img
                 src={
                   ProfilState.foto === null
@@ -96,12 +96,16 @@ export const Profil = () => {
                 alt="avatar-account"
                 className="avatar"
               />
-              <input
-                type={"file"}
-                onChange={(e) => {
-                  handleInput(e, "foto");
-                }}
-              />
+              <label className="costum-input-image">
+                <input
+                  type={"file"}
+                  className="form-control-image"
+                  onChange={(e) => {
+                    handleInput(e, "foto");
+                  }}
+                />
+                <span className="button-input-profil">Edit image</span>
+              </label>
             </div>
             <div className="col col-lg-8 col-sm-12 col-12 profil-right">
               <div className="mb-3">
@@ -141,9 +145,11 @@ export const Profil = () => {
                   }}
                 />
               </div>
-              <button type="submit" className="btn btn-primary">
-                Submit
-              </button>
+              <div className="mb-3 d-flex justify-content-center">
+                <button type="submit" className="button-input-profil">
+                  Submit
+                </button>
+              </div>
             </div>
           </div>
         </form>

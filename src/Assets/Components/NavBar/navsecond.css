@@ -6,6 +6,7 @@
 
 .nav-content {
   height: 100%;
+  width: 52%;
 }
 
 .nav-content-title {
@@ -16,7 +17,15 @@
   padding: 0px !important;
 }
 
-.try {
-  background-color: blue;
-  width: 100%;
+.page-name-second {
+  
+  color: white;
+  font-weight: bolder;
+  font-size: larger;
+}
+
+@media (max-width: 426px) {
+ .nav-content {
+  width: 62%;
+ } 
 }
