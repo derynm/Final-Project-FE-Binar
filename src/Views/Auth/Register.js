@@ -1,9 +1,12 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Auth.css";
 
 export const Register = () => {
   const navigate = useNavigate();
+  const Host = process.env.REACT_APP_HOST;
+  const reg_paswd = /^(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$/;
 
   //state untuk disable button
   const [DisableButton, setDisableButton] = useState(true);
@@ -19,10 +22,14 @@ export const Register = () => {
     role: null,
   });
 
+  const [isPassed, setisPassed] = useState(true);
+
   const [isActive, setisActive] = useState({
     penjual: false,
     pembeli: false,
   });
+
+  const [isEror, setisEror] = useState(false);
 
   //fungsi untuk aktifkan tombol
   const toggleActive = (role) => {
@@ -30,13 +37,12 @@ export const Register = () => {
       setisActive({
         penjual: true,
         pembeli: false,
-      })
-    }else (
+      });
+    } else
       setisActive({
         penjual: false,
         pembeli: true,
-      })
-    )
+      });
   };
 
   //function untuk cek apakah semua inputan sudah terisi
@@ -63,9 +69,82 @@ export const Register = () => {
       [prop]: e.target.value,
     });
   };
+
+  const registerToggle = () => {
+    if (RegisterState.password.match(reg_paswd)) {
+      if (RegisterState.role === "pembeli") {
+        registerBuyer();
+      } else {
+        registerSeller();
+      }
+    } else {
+      setisPassed(false);
+    }
+  };
+
+  const registerBuyer = async () => {
+    var data = JSON.stringify({
+      username: RegisterState.nama,
+      email: RegisterState.email,
+      password: RegisterState.password,
+    });
+
+    var config = {
+      method: "post",
+      url: `${Host}registration`,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: data,
+    };
+
+    await axios(config)
+      .then(function (response) {
+        // console.log(JSON.stringify(response.data));
+        alert("berhasil");
+        navigate(`/auth/login`);
+      })
+      .catch(function (error) {
+        setisEror(true);
+        alert("gagal regis buyer");
+      });
+  };
+
+  const registerSeller = async () => {
+    var data = JSON.stringify({
+      username: RegisterState.nama,
+      email: RegisterState.email,
+      password: RegisterState.password,
+    });
+
+    var config = {
+      method: "post",
+      url: "https://sneakers-staging.herokuapp.com/registration-seller",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: data,
+    };
+
+    await axios(config)
+      .then(function (response) {
+        alert("berhasil");
+      })
+      .catch(function (error) {
+        setisEror(true);
+        alert("gagal regis seller");
+      });
+  };
+
   return (
-    <form>
+    <div>
       <h3>Daftar</h3>
+      {isEror ? (
+        <p className="eror-register">
+          Registrasi gagal : email sudah digunakan
+        </p>
+      ) : null}
+
       <div className="mb-3">
         <label className="form-label">Nama</label>
         <input
@@ -98,6 +177,11 @@ export const Register = () => {
             handleState(e, "password");
           }}
         />
+        {isPassed ? null : (
+          <p className="note-password">
+            Password harus berisi 8 karakter dan minimal 1 huruf kapital
+          </p>
+        )}
       </div>
 
       <div className="mb-3 form-check">
@@ -127,7 +211,7 @@ export const Register = () => {
               toggleActive("pembeli");
             }}
           >
-            <span className="fw-bold">Pembeli</span>
+            Pembeli
           </button>
         </div>
         <div className="col-6">
@@ -144,17 +228,20 @@ export const Register = () => {
               toggleActive("penjual");
             }}
           >
-            <span className="fw-bold">Penjual</span>
+            Penjual
           </button>
         </div>
       </div>
 
       <button
-        type="submit"
+        type="button"
         className="button-auth mb-5"
         disabled={DisableButton}
+        onClick={() => {
+          registerToggle();
+        }}
       >
-        <span className="fw-bold">Masuk</span>
+        Daftar
       </button>
 
       <div className="d-flex justify-content-center to-register">
@@ -167,6 +254,6 @@ export const Register = () => {
           Masuk
         </p>
       </div>
-    </form>
+    </div>
   );
 };

@@ -15,21 +15,14 @@ export const Login = () => {
   const [LoginState, setLoginState] = useState({
     email: null,
     password: null,
-    role: null,
   });
 
-  
-  const [isActive, setisActive] = useState({
-    penjual: false,
-    pembeli: false,
-  });
 
   //function untuk cek apakah semua inputan sudah terisi
   const disableSubmit = () => {
     if (
       LoginState.email !== null &&
-      LoginState.password !== null &&
-      LoginState.role !== null
+      LoginState.password !== null
     ) {
       setDisableButton(false);
     }
@@ -48,24 +41,8 @@ export const Login = () => {
     });
   };
 
-  //fungsi untuk aktifkan tombol
-  const toggleActive = (role) => {
-    if (role === "penjual") {
-      setisActive({
-        penjual: true,
-        pembeli: false,
-      })
-    }else (
-      setisActive({
-        penjual: false,
-        pembeli: true,
-      })
-    )
-  };
-
   return (
     <form>
-      {console.log(LoginState.role)}
       <h3>Masuk</h3>
       <div className="mb-3">
         <label className="form-label">Email</label>
@@ -102,43 +79,6 @@ export const Login = () => {
         <label className="form-check-label">Tampilkan Password</label>
       </div>
 
-      <div className="row mb-3">
-        <div className="col-6">
-          <button
-            type="button"
-            className={
-              isActive.pembeli
-                ? "button-role-selected"
-                : "button-role-not-selected"
-            }
-            value="pembeli"
-            onClick={(e) => {
-              handleState(e, "role");
-              toggleActive("pembeli");
-            }}
-          >
-            Pembeli
-          </button>
-        </div>
-
-        <div className="col-6">
-          <button
-            type="button"
-            className={
-              isActive.penjual
-                ? "button-role-selected"
-                : "button-role-not-selected"
-            }
-            value="penjual"
-            onClick={(e) => {
-              handleState(e, "role");
-              toggleActive("penjual");
-            }}
-          >
-            Penjual
-          </button>
-        </div>
-      </div>
 
       <button
         type="submit"
