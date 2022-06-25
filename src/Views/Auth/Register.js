@@ -45,11 +45,18 @@ export const Register = () => {
         penjual: true,
         pembeli: false,
       });
-    } else
+    } else if (role === "pembeli"){
       setisActive({
         penjual: false,
         pembeli: true,
       });
+    } else {
+      setisActive({
+        penjual: false,
+        pembeli: false,
+      });
+    }
+
   };
 
   //function untuk cek apakah semua inputan sudah terisi
@@ -113,13 +120,15 @@ export const Register = () => {
     await axios(config)
       .then(function (response) {
         // console.log(JSON.stringify(response.data));
-        alert("berhasil");
+        
         setisLoading(false);
+        alert("berhasil regis buyer");
         navigate(`/auth/login`);
       })
       .catch(function (error) {
         setisEror(true);
         setisLoading(false);
+        toggleActive("off")
         alert("gagal regis buyer");
       });
   };
@@ -134,7 +143,7 @@ export const Register = () => {
 
     var config = {
       method: "post",
-      url: "https://sneakers-staging.herokuapp.com/registration-seller",
+      url: `${Host}registration-seller`,
       headers: {
         "Content-Type": "application/json",
       },
@@ -143,10 +152,15 @@ export const Register = () => {
 
     await axios(config)
       .then(function (response) {
-        alert("berhasil");
+        setisLoading(false);
+        alert("berhasil regis seller");
+        navigate(`/auth/login`);
       })
       .catch(function (error) {
         setisEror(true);
+        setisEror(true);
+        setisLoading(false);
+        toggleActive("off")
         alert("gagal regis seller");
       });
   };

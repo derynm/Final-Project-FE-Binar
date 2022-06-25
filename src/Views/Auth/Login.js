@@ -1,9 +1,13 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Auth.css";
 
 export const Login = () => {
   const navigate = useNavigate();
+
+  //link enpoint(API)
+  const Host = process.env.REACT_APP_HOST;
 
   //state untuk disable button
   const [DisableButton, setDisableButton] = useState(true);
@@ -41,8 +45,32 @@ export const Login = () => {
     });
   };
 
+const userLogin = () => {
+  var data = JSON.stringify({
+    "email": LoginState.email,
+    "password": LoginState.password
+  });
+  
+  var config = {
+    method: 'post',
+    url: `${Host}login`,
+    headers: { 
+      'Content-Type': 'application/json'
+    },
+    data : data
+  };
+  
+  axios(config)
+  .then(function (response) {
+    console.log(JSON.stringify(response.data));
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+}
+
   return (
-    <form>
+    <div>
       <h3>Masuk</h3>
       <div className="mb-3">
         <label className="form-label">Email</label>
@@ -84,6 +112,7 @@ export const Login = () => {
         type="submit"
         className="button-auth mb-4"
         disabled={DisableButton}
+        onClick={()=>{userLogin()}}
       >
         Masuk
       </button>
@@ -98,6 +127,8 @@ export const Login = () => {
           Daftar
         </p>
       </div>
-    </form>
+    
+    </div>
+
   );
 };
