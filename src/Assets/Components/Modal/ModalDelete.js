@@ -19,7 +19,7 @@ export const ModalDelete = ({ closed }) => {
             <button
               className="modal-button col-6"
               style={{ backgroundColor: "red" }}
-              onClick={closed}
+              onClick={closed}  
             >
               Tidak
             </button>
