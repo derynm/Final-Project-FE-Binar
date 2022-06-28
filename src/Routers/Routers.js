@@ -7,7 +7,7 @@ import { Login } from "../Views/Auth/Login";
 import { Register } from "../Views/Auth/Register";
 import { HomeSlider } from "../Assets/Components/HomeSlider/HomeSlider";
 import { CardHomePage } from "../Assets/Components/CardHomePage/CardHomePage";
-import { DetailProduct } from "../Views/Product/DetailProduct";
+import { DetailProduct } from "../Views/Product/Detail-Product/DetailProduct";
 
 export const Routers = () => {
   return (
@@ -24,7 +24,7 @@ export const Routers = () => {
 
       {/* Product */}
       <Route path="/add-product" element={<AddProduct />} />
-      <Route path="/detail-product" element={<DetailProduct />} />
+      <Route path="/detail-product" element={<DetailProduct/>} />
     </Routes>
   );
 };
