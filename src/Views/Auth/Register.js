@@ -123,7 +123,7 @@ export const Register = () => {
         // console.log(JSON.stringify(response.data));
         
         setisLoading(false);
-        alert("berhasil regis buyer");
+        alert("Akun berhasil terdaftar. Silahkan login");
         navigate(`/auth/login`);
       })
       .catch(function (error) {
