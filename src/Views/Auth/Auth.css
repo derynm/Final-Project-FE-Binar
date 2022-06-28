@@ -77,7 +77,7 @@
     cursor: pointer;
 }
 
-.eror-register {
+.eror-auth {
   color: red; 
   font-weight: 100;
 }
