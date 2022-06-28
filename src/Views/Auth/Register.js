@@ -96,6 +96,7 @@ export const Register = () => {
         registerSeller();
       }
     } else {
+      //kalau password tidak memenuhi syarat akan memnculkan peringatan
       setisPassed(false);
     }
   };
@@ -158,7 +159,6 @@ export const Register = () => {
       })
       .catch(function (error) {
         setisEror(true);
-        setisEror(true);
         setisLoading(false);
         toggleActive("off")
         alert("gagal regis seller");
@@ -175,7 +175,7 @@ export const Register = () => {
         <div>
           <h3>Daftar</h3>
           {isEror ? (
-            <p className="eror-register">
+            <p className="eror-auth">
               Registrasi gagal : email sudah digunakan
             </p>
           ) : null}
