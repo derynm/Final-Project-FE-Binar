@@ -1,0 +1,30 @@
+.buttonHome-1{
+    margin-top: 30px;
+    margin-left: 100px;
+    display: flex;
+    flex-direction: row;
+    
+}
+.button-kategori{
+    width: 150px;
+    margin-right: 50px;
+    border-radius: 30px;
+}
+.icon-button1{
+    margin-right: 10px;
+}
+.text-kategoriHeader{
+    margin-top: 50px;
+    margin-left: 100px;
+}
+.text-kategori{
+    font-weight: bold;
+    font-size: x-large;
+}
+.cardHome{
+    margin-top: 50px;
+    margin-left: 100px;
+}
+.footerHome{
+    margin-top: 500px;
+}
