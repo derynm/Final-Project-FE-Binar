@@ -4,7 +4,6 @@ import "../../Assets/Components/FontawsomeIcons/Font";
 import { FooterComponent } from "../../Assets/Components/Footer/FooterComponent";
 import { HomeSlider } from "../../Assets/Components/HomeSlider/HomeSlider";
 import { NavbarComponent } from "../../Assets/Components/NavBar/NavbarComponent";
-import { Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { CardHomePage } from "../../Assets/Components/CardHomePage/CardHomePage";
 
@@ -84,8 +83,29 @@ export const Home = () => {
           </div>
         </div>
       </div>
-      <div className="home-card-grup" style={{backgroundColor:"blue"}}>
+      <div className="home-card-grup">
           <div className="row">
+            <div className="col col-lg-2 col-sm-3 col-6">
+              <CardHomePage namaProduk={"sepatu"} kategori={"nike"} harga={1000000}/>
+            </div>
+            <div className="col col-lg-2 col-sm-3 col-6">
+              <CardHomePage namaProduk={"sepatu"} kategori={"nike"} harga={1000000}/>
+            </div>
+            <div className="col col-lg-2 col-sm-3 col-6">
+              <CardHomePage namaProduk={"sepatu"} kategori={"nike"} harga={1000000}/>
+            </div>
+            <div className="col col-lg-2 col-sm-3 col-6">
+              <CardHomePage namaProduk={"sepatu"} kategori={"nike"} harga={1000000}/>
+            </div>
+            <div className="col col-lg-2 col-sm-3 col-6">
+              <CardHomePage namaProduk={"sepatu"} kategori={"nike"} harga={1000000}/>
+            </div>
+            <div className="col col-lg-2 col-sm-3 col-6">
+              <CardHomePage namaProduk={"sepatu"} kategori={"nike"} harga={1000000}/>
+            </div>
+            <div className="col col-lg-2 col-sm-3 col-6">
+              <CardHomePage namaProduk={"sepatu"} kategori={"nike"} harga={1000000}/>
+            </div>
             <div className="col col-lg-2 col-sm-3 col-6">
               <CardHomePage namaProduk={"sepatu"} kategori={"nike"} harga={1000000}/>
             </div>

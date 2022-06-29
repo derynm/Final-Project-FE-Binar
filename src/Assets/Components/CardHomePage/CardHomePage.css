@@ -2,9 +2,23 @@
   border-radius: 8px;
   background: #ffffff;
   cursor: pointer;
+  box-shadow: 0px 0px 6px #dbdbdb;
+  margin: 8px;
+}
+.textCategory{
+  color: darkgrey;
+  font-size: 13px;
 }
 .textPrice {
-  color: #e78ea9;
+  line-height: 0%;
+  font-size: 15px;
+}
+.nama-produk{
+  font-weight: bolder;
+}
+.photo-produk{
+  padding: 4px;
+  border-radius: 8px;
 }
 .utama{
   display: flex;
