@@ -1,3 +1,7 @@
+.caraouselHeader{
+    padding-left: 100px;
+    padding-right: 100px;
+}
 .carousel1{
     /* padding-left: 100px;
     padding-right: 100px; */
@@ -11,3 +15,4 @@
     height: 500px;
     width: 1000px;
 }
+

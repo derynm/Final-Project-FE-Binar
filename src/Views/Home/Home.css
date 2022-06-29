@@ -3,12 +3,14 @@
     margin-left: 100px;
     display: flex;
     flex-direction: row;
+    /* max-width: 1500px; */
     
 }
 .button-kategori{
-    width: 150px;
+    width: 200px !important;
+    /* width: 150px;
     margin-right: 50px;
-    border-radius: 30px;
+    border-radius: 30px; */
 }
 .icon-button1{
     margin-right: 10px;

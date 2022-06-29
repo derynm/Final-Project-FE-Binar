@@ -7,7 +7,7 @@ import airmax from "../../Img/airmax1.jpg"
 
 export const HomeSlider = () => {
   return (
-    <div>
+    <div className="caraouselHeader">
       <Carousel className="carousel1">
         <Carousel.Item className="carousel2" interval={5000}>
           <img

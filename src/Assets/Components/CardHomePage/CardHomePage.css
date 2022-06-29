@@ -6,3 +6,10 @@
 .textPrice {
   color: #e78ea9;
 }
+.utama{
+  display: flex;
+  flex-direction: row;
+}
+.cardUtama2{
+  margin-left: 20px;
+}
