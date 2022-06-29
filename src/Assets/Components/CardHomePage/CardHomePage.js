@@ -7,7 +7,7 @@ import jordan2 from "../../Img/jordan4.jpg"
 export const CardHomePage = ({namaProduk, kategori, harga, funtion}) => {
   return (
     <div className="utama">
-      <Card className="cardUtama" style={{ width: "18rem" }}>
+      <Card className="cardUtama" style={{ width: "" }} onClick={funtion}>
         <Card.Img variant="top" src={jordan1} />
         <Card.Body>
           <Card.Title>{namaProduk}</Card.Title>
@@ -17,7 +17,6 @@ export const CardHomePage = ({namaProduk, kategori, harga, funtion}) => {
           <Card.Text className="textPrice">
             {harga}
           </Card.Text>
-          <Button variant="primary" onClick={funtion}>Go somewhere</Button>
         </Card.Body>
       </Card>
     </div>
