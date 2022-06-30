@@ -2,14 +2,16 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { Home } from "../Views/Home/Home";
 import { AddProduct } from "../Views/Product/AddProduct";
-import { EditProduct } from "../Views/Product/EditProduct";
-import { DeleteProduct } from "../Views/Product/DeleteProduct";
 import { Auth } from "../Views/Auth/Auth";
 import { Login } from "../Views/Auth/Login";
 import { Register } from "../Views/Auth/Register";
 import { HomeSlider } from "../Assets/Components/HomeSlider/HomeSlider";
 import { Profil } from "../Views/User/Profil";
 import { CardHomePage } from "../Assets/Components/CardHomePage/CardHomePage";
+
+import { Dummy } from "../Views/Dummy";
+
+import { DetailProduct } from "../Views/Product/Detail-Product/DetailProduct";
 
 
 export const Routers = () => {
@@ -29,8 +31,10 @@ export const Routers = () => {
 
       {/* Product */}
       <Route path="/add-product" element={<AddProduct />} />
-      <Route path="/edit-product" element={<EditProduct />} />
-      <Route path="/delete-product" element={<DeleteProduct />} />
+      <Route path="/dummy" element={<Dummy />} />
+      
+      <Route path="/detail-product" element={<DetailProduct/>} />
+
     </Routes>
   );
 };
