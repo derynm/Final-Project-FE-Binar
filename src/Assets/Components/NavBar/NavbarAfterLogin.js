@@ -9,14 +9,13 @@ import user from "../../Img/user.svg";
 export const NavbarAfterLogin = () => {
   const isMobile = useMediaQuery({ query: "(max-width: 426px)" });
   return (
-
     <div>
       <Navbar expand="lg">
         <Container>
           <div
             className={
               isMobile ? "null" : "container-sm d-flex justify-content-between"
-            }
+        }
           >
             <div
               className="d-flex justify-content-between"
@@ -33,8 +32,11 @@ export const NavbarAfterLogin = () => {
                   style={isMobile ? null : { width: "100px" }}
                 >
                   <div className="imageButton">
-                  {isMobile ? (<p>null</p>):(<img src={list} width={20} alt="" />)}
-                    
+                    {isMobile ? (
+                      <p>null</p>
+                    ) : (
+                      <img src={list} width={20} alt="" />
+                    )}
                   </div>
                   <div className="imageButton">
                     <img src={alarm} width={20} alt="" />
