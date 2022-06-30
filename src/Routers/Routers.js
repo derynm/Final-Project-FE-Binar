@@ -8,6 +8,9 @@ import { Register } from "../Views/Auth/Register";
 import { HomeSlider } from "../Assets/Components/HomeSlider/HomeSlider";
 import { Profil } from "../Views/User/Profil";
 import { CardHomePage } from "../Assets/Components/CardHomePage/CardHomePage";
+
+import { Dummy } from "../Views/Dummy";
+
 import { DetailProduct } from "../Views/Product/Detail-Product/DetailProduct";
 
 
@@ -28,7 +31,10 @@ export const Routers = () => {
 
       {/* Product */}
       <Route path="/add-product" element={<AddProduct />} />
+      <Route path="/dummy" element={<Dummy />} />
+      
       <Route path="/detail-product" element={<DetailProduct/>} />
+
     </Routes>
   );
 };
