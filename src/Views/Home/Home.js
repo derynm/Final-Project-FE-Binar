@@ -4,12 +4,15 @@ import "../../Assets/Components/FontawsomeIcons/Font";
 import { FooterComponent } from "../../Assets/Components/Footer/FooterComponent";
 import { HomeSlider } from "../../Assets/Components/HomeSlider/HomeSlider";
 import { NavbarComponent } from "../../Assets/Components/NavBar/NavbarComponent";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { CardHomePage } from "../../Assets/Components/CardHomePage/CardHomePage";
+import { NavbarAfterLogin } from "../../Assets/Components/NavBar/NavbarAfterLogin";
 
 export const Home = () => {
   return (
     <div>
+    <NavbarAfterLogin/>
       <div className="container-sm">
         <div className="home-carousel ">
           <HomeSlider />
