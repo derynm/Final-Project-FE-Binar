@@ -1,8 +1,17 @@
 .buttonHome-1 {
   margin-top: 30px;
 }
-.home-kategori-button-grup{
+
+.home-kategori{
+    border-top:1px solid rgba(0, 0, 0, 0.339);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.339);;
+    padding: 12px 0px;
     margin-bottom: 12px;
+}
+
+.home-kategori-button-grup{
+   
+
 }
 
 .button-kategori {
