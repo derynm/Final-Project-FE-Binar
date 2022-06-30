@@ -1,23 +1,22 @@
 import React from "react";
-import { Button, Card } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import "../CardHomePage/CardHomePage.css";
 import jordan1 from "../../Img/jordan 1 unc.webp"
 import jordan2 from "../../Img/jordan4.jpg"
 
-export const CardHomePage = ({namaProduk, kategori, harga, funtion}) => {
+export const CardHomePage = ({gambarProduk,namaProduk, kategori, harga, funtion}) => {
   return (
     <div className="utama">
-      <Card className="cardUtama" style={{ width: "18rem" }}>
-        <Card.Img variant="top" src={jordan1} />
+      <Card className="cardUtama"onClick={funtion}>
+        <img className="photo-produk" src={jordan1} alt="produk"/>
         <Card.Body>
-          <Card.Title>{namaProduk}</Card.Title>
-          <Card.Text>
+          <h6 className="nama-produk">{namaProduk}</h6>
+          <Card.Text className="textCategory">
             {kategori}
           </Card.Text>
           <Card.Text className="textPrice">
             {harga}
           </Card.Text>
-          <Button variant="primary" onClick={funtion}>Go somewhere</Button>
         </Card.Body>
       </Card>
     </div>
