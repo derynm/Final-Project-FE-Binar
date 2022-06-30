@@ -9,110 +9,140 @@ import { CardHomePage } from "../../Assets/Components/CardHomePage/CardHomePage"
 
 export const Home = () => {
   return (
-    <div className="container-sm">
-      <div
-        className="home-carousel "
-        // style={{ backgroundColor: "red" }}
-      >
-
-            <HomeSlider/>
-
-      </div>
-      <div className="home-kategori">
-        <h5>Telusuri kategori</h5>
-        <div className="home-kategori-button-grup">
+    <div>
+      <div className="container-sm">
+        <div className="home-carousel ">
+          <HomeSlider />
+        </div>
+        <div className="home-kategori">
+          <h5>Telusuri kategori</h5>
+          <div className="home-kategori-button-grup">
+            <div className="row">
+              <div className="col col-lg-2 col-sm-3 col-4">
+                <button className="button-kategori">
+                  <FontAwesomeIcon
+                    className="icon-button1"
+                    icon="fa-brands fa-searchengin"
+                    size="xl"
+                  />
+                  Semua
+                </button>
+              </div>
+              <div className="col col-lg-2 col-sm-3 col-4">
+                <button className="button-kategori">
+                  <FontAwesomeIcon
+                    className="icon-button1"
+                    icon="fa-brands fa-searchengin"
+                    size="xl"
+                  />
+                  Nike
+                </button>
+              </div>
+              <div className="col col-lg-2 col-sm-3 col-4">
+                <button className="button-kategori">
+                  <FontAwesomeIcon
+                    className="icon-button1"
+                    icon="fa-brands fa-searchengin"
+                    size="xl"
+                  />
+                  Vans
+                </button>
+              </div>
+              <div className="col col-lg-2 col-sm-3 col-4">
+                <button className="button-kategori">
+                  <FontAwesomeIcon
+                    className="icon-button1"
+                    icon="fa-brands fa-searchengin"
+                    size="xl"
+                  />
+                  Puma
+                </button>
+              </div>
+              <div className="col col-lg-2 col-sm-3 col-4">
+                <button className="button-kategori">
+                  <FontAwesomeIcon
+                    className="icon-button1"
+                    icon="fa-brands fa-searchengin"
+                    size="xl"
+                  />
+                  Jordan
+                </button>
+              </div>
+              <div className="col col-lg-2 col-sm-3 col-4">
+                <button className="button-kategori">
+                  <FontAwesomeIcon
+                    className="icon-button1"
+                    icon="fa-brands fa-searchengin"
+                    size="xl"
+                  />
+                  Adidas
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="home-card-grup">
           <div className="row">
-            <div className="col col-lg-2 col-sm-3 col-4">
-              <button className="button-kategori">
-                <FontAwesomeIcon
-                  className="icon-button1"
-                  icon="fa-brands fa-searchengin"
-                  size="xl"
-                />
-                Semua
-              </button>
+            <div className="col col-lg-2 col-sm-3 col-6">
+              <CardHomePage
+                namaProduk={"sepatu"}
+                kategori={"nike"}
+                harga={1000000}
+              />
             </div>
-            <div className="col col-lg-2 col-sm-3 col-4">
-              <button className="button-kategori">
-                <FontAwesomeIcon
-                  className="icon-button1"
-                  icon="fa-brands fa-searchengin"
-                  size="xl"
-                />
-                Nike
-              </button>
+            <div className="col col-lg-2 col-sm-3 col-6">
+              <CardHomePage
+                namaProduk={"sepatu"}
+                kategori={"nike"}
+                harga={1000000}
+              />
             </div>
-            <div className="col col-lg-2 col-sm-3 col-4">
-              <button className="button-kategori">
-                <FontAwesomeIcon
-                  className="icon-button1"
-                  icon="fa-brands fa-searchengin"
-                  size="xl"
-                />
-                Vans
-              </button>
+            <div className="col col-lg-2 col-sm-3 col-6">
+              <CardHomePage
+                namaProduk={"sepatu"}
+                kategori={"nike"}
+                harga={1000000}
+              />
             </div>
-            <div className="col col-lg-2 col-sm-3 col-4">
-              <button className="button-kategori">
-                <FontAwesomeIcon
-                  className="icon-button1"
-                  icon="fa-brands fa-searchengin"
-                  size="xl"
-                />
-                Puma
-              </button>
+            <div className="col col-lg-2 col-sm-3 col-6">
+              <CardHomePage
+                namaProduk={"sepatu"}
+                kategori={"nike"}
+                harga={1000000}
+              />
             </div>
-            <div className="col col-lg-2 col-sm-3 col-4">
-              <button className="button-kategori">
-                <FontAwesomeIcon
-                  className="icon-button1"
-                  icon="fa-brands fa-searchengin"
-                  size="xl"
-                />
-                Jordan
-              </button>
+            <div className="col col-lg-2 col-sm-3 col-6">
+              <CardHomePage
+                namaProduk={"sepatu"}
+                kategori={"nike"}
+                harga={1000000}
+              />
             </div>
-            <div className="col col-lg-2 col-sm-3 col-4">
-              <button className="button-kategori">
-                <FontAwesomeIcon
-                  className="icon-button1"
-                  icon="fa-brands fa-searchengin"
-                  size="xl"
-                />
-                Adidas
-              </button>
+            <div className="col col-lg-2 col-sm-3 col-6">
+              <CardHomePage
+                namaProduk={"sepatu"}
+                kategori={"nike"}
+                harga={1000000}
+              />
+            </div>
+            <div className="col col-lg-2 col-sm-3 col-6">
+              <CardHomePage
+                namaProduk={"sepatu"}
+                kategori={"nike"}
+                harga={1000000}
+              />
+            </div>
+            <div className="col col-lg-2 col-sm-3 col-6">
+              <CardHomePage
+                namaProduk={"sepatu"}
+                kategori={"nike"}
+                harga={1000000}
+              />
             </div>
           </div>
         </div>
       </div>
-      <div className="home-card-grup">
-          <div className="row">
-            <div className="col col-lg-2 col-sm-3 col-6">
-              <CardHomePage namaProduk={"sepatu"} kategori={"nike"} harga={1000000}/>
-            </div>
-            <div className="col col-lg-2 col-sm-3 col-6">
-              <CardHomePage namaProduk={"sepatu"} kategori={"nike"} harga={1000000}/>
-            </div>
-            <div className="col col-lg-2 col-sm-3 col-6">
-              <CardHomePage namaProduk={"sepatu"} kategori={"nike"} harga={1000000}/>
-            </div>
-            <div className="col col-lg-2 col-sm-3 col-6">
-              <CardHomePage namaProduk={"sepatu"} kategori={"nike"} harga={1000000}/>
-            </div>
-            <div className="col col-lg-2 col-sm-3 col-6">
-              <CardHomePage namaProduk={"sepatu"} kategori={"nike"} harga={1000000}/>
-            </div>
-            <div className="col col-lg-2 col-sm-3 col-6">
-              <CardHomePage namaProduk={"sepatu"} kategori={"nike"} harga={1000000}/>
-            </div>
-            <div className="col col-lg-2 col-sm-3 col-6">
-              <CardHomePage namaProduk={"sepatu"} kategori={"nike"} harga={1000000}/>
-            </div>
-            <div className="col col-lg-2 col-sm-3 col-6">
-              <CardHomePage namaProduk={"sepatu"} kategori={"nike"} harga={1000000}/>
-            </div>
-          </div>
-        </div>
+      <FooterComponent />
     </div>
   );
 };
