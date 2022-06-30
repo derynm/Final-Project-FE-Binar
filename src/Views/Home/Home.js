@@ -11,10 +11,12 @@ export const Home = () => {
   return (
     <div className="container-sm">
       <div
-        className="home-carousel d-flex justify-content-center"
-        style={{ backgroundColor: "red" }}
+        className="home-carousel "
+        // style={{ backgroundColor: "red" }}
       >
-        a
+
+            <HomeSlider/>
+
       </div>
       <div className="home-kategori">
         <h5>Telusuri kategori</h5>
