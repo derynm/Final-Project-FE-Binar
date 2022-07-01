@@ -35,14 +35,14 @@ export const CardSellerInfo = ({avatar, seller_name, province, city}) => {
     <div className="card-seller-info-main">
     <div className="card-seller-content">
       <div className="row">
-        <div className="col-3 d-flex align-items-center justify-content-center" >
+        <div className="col-1 d-flex align-items-center" >
           <img
             src={akun}
             alt="avatar seller"
             className="card-seller-avatar"
           />
         </div>
-        <div className="col-9">
+        <div className="col-11 ps-lg-4 ps-5">
           <div className="row">
             <div className="col-12">
               <p className="card-seller-name">{seller_name}</p>
