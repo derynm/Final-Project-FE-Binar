@@ -45,18 +45,11 @@ export const Register = () => {
         penjual: true,
         pembeli: false,
       });
-    } else if (role === "pembeli"){
+    } else
       setisActive({
         penjual: false,
         pembeli: true,
       });
-    } else {
-      setisActive({
-        penjual: false,
-        pembeli: false,
-      });
-    }
-
   };
 
   //function untuk cek apakah semua inputan sudah terisi
