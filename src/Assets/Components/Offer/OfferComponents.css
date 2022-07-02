@@ -1,36 +1,52 @@
 .offer-main {
-    max-width: 568px;
+  max-width: 568px;
 }
 
 .offer-title {
-    font-weight: bolder;
-    font-size: 14px;
-    margin-top: 16px;
+  font-weight: bolder;
+  font-size: 14px;
+  margin-top: 16px;
 }
 
 .offer-content-image {
-    width: 48px;
-    height: 48px;
-    object-fit:cover;
-    border-radius: 12px;
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 12px;
 }
 
 .offer-product {
-    padding-left: 24px !important;
+  padding-left: 24px !important;
 }
 
-.offer-status, .offer-time {
-    font-size: 12px;
-    color: darkgrey;
+.offer-status,
+.offer-time {
+  font-size: 12px;
+  color: darkgrey;
 }
 
 .offer-product-detail p {
-    line-height: 20%;
-    font-size: 14px;
+  line-height: 20%;
+  font-size: 14px;
+}
+
+.offer-button {
+  max-width: 158px;
+  flex-grow: 1;
+  border: none;
+  margin-left: 16px;
+  padding: 8px;
+  border-radius: 8px;
+}
+
+.offer-decline {
+}
+
+.offer-accept {
 }
 
 @media (max-width: 426px) {
-    .offer-product {
-        padding-left: 4px !important;
-    }
+  .offer-product {
+    padding-left: 4px !important;
+  }
 }

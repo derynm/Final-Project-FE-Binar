@@ -3,7 +3,7 @@ import { CardSellerInfo } from "../Card/CardSeller/CardSeller";
 import produk from "../../Img/airmax.jpg";
 import "./OfferComponents.css";
 
-export const OfferComponents = () => {
+export const OfferComponents = ({status,productName,originaPrice,offerPrice,}) => {
   return (
     <div className="offer-main">
       <CardSellerInfo />
@@ -26,9 +26,12 @@ export const OfferComponents = () => {
           </div>
         </div>
         <div className="offer-button-group d-flex justify-content-end">
-          <button>Terima</button>
-          <button>Tolak</button>
+          <button className="offer-button offer-decline not-filled">
+            Tolak
+          </button>
+          <button className="offer-button offer-accept filled">Terima</button>
         </div>
+        <hr/>
       </div>
     </div>
   );
