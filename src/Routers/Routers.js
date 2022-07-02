@@ -12,6 +12,7 @@ import { CardHomePage } from "../Assets/Components/CardHomePage/CardHomePage";
 import { Dummy } from "../Views/Dummy";
 
 import { DetailProduct } from "../Views/Product/Detail-Product/DetailProduct";
+import { InfoPenawaran } from "../Views/InfoPenawaran/InfoPenawaran";
 
 
 export const Routers = () => {
@@ -34,6 +35,8 @@ export const Routers = () => {
       <Route path="/dummy" element={<Dummy />} />
       
       <Route path="/detail-product" element={<DetailProduct/>} />
+
+      <Route path="/info-penawaran" element={<InfoPenawaran/>} />
 
     </Routes>
   );
