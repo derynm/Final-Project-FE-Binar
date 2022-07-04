@@ -1,12 +1,13 @@
 import React from 'react';
 import { Container, Nav, Form, FormControl, Button } from 'react-bootstrap';
 import Navbar from 'react-bootstrap/Navbar';
-import '../../Css/style.css';
+import "../NavBar/NavbarComponent.css"
 
 export const NavbarComponent = () => {
     return (
         <div>
-            <div className='container nav-footer-bg mb-4'>
+            <div className='Navbar container nav-footer-bg mb-4'>
+            <div className='box1'></div>
                 <Navbar className='nav-footer-bg' expand="md">
                     <Container fluid>
                         <Navbar.Brand href="#">HOME</Navbar.Brand>
@@ -17,20 +18,16 @@ export const NavbarComponent = () => {
                                 style={{ maxHeight: '100px' }}
                                 navbarScroll
                             >
-                                <Nav.Link href="#action1">Notifikasi
-                                    <sup className='text-danger h6'>12</sup>
-                                </Nav.Link>
-                                <Nav.Link href="#action2">Daftar Jual</Nav.Link>
-                                <Nav.Link href="#action3">Akun Saya</Nav.Link>
+                                <Nav.Link href="#action1">Home</Nav.Link>
                             </Nav>
-                            <Form className="d-flex">
+                            <Form className="searchFrom d-flex">
                                 <FormControl
                                     type="search"
                                     placeholder="Search"
                                     className="me-2"
                                     aria-label="Search"
                                 />
-                                <Button variant="outline-success">Search</Button>
+                                <Button className='buttonSearch' variant="outline-success">Search</Button>
                             </Form>
                         </Navbar.Collapse>
                     </Container>

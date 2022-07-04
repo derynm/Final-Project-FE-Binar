@@ -1,0 +1,12 @@
+.imageButton {
+}
+
+.nav-after-edit {
+  width: 400px !important;
+}
+
+@media (max-width: 426px) {
+  .imageButton {
+    margin-top: 12px;
+  }
+}
