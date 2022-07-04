@@ -1,10 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavbarSecond } from "../../Assets/Components/NavBar/NavbarSecond";
 import "./profil.css";
 import avatar from "../../Assets/Img/avatar-account.png";
 import Daerah from "../../Assets/Data_Daerah/Data_Daerah";
+import { useNavigate } from "react-router-dom";
+
 
 export const Profil = () => {
+
+  let navigate = useNavigate();
+  useEffect(() => {
+    const Token = sessionStorage.getItem("acc_token");
+    if (!Token) {
+      navigate(`/`);
+    }
+  }, []);
   //state untuk menampung hasil inputan
   const [ProfilState, setProfilState] = useState({
     foto: null,
