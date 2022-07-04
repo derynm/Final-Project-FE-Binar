@@ -4,6 +4,8 @@
   cursor: pointer;
   box-shadow: 0px 0px 6px #dbdbdb;
   margin: 8px;
+  max-height: 230px;
+  height: 100%;
 }
 .textCategory{
   color: darkgrey;
@@ -19,6 +21,8 @@
 .photo-produk{
   padding: 4px;
   border-radius: 8px;
+  height: 120px;
+  object-fit: contain;
 }
 .utama{
   display: flex;

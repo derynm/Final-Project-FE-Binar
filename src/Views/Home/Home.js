@@ -9,10 +9,27 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { CardHomePage } from "../../Assets/Components/CardHomePage/CardHomePage";
 import { NavbarAfterLogin } from "../../Assets/Components/NavBar/NavbarAfterLogin";
 
+import produk from "../../Assets/Data_Dummy/DataProdukDummy";
+
 export const Home = () => {
+  const showProduk = (data) => {
+    return   data.map((value, key) => {
+      return (
+        <div className="col col-lg-2 col-sm-3 col-6" key={key}>
+          <CardHomePage
+            gambarProduk={value.photo}
+            namaProduk={value.title}
+            kategori={value.category}
+            harga={value.price}
+          />
+        </div>
+      );
+    });
+  };
+
   return (
     <div>
-    <NavbarAfterLogin/>
+      <NavbarAfterLogin />
       <div className="container-sm">
         <div className="home-carousel ">
           <HomeSlider />
@@ -85,64 +102,7 @@ export const Home = () => {
           </div>
         </div>
         <div className="home-card-grup">
-          <div className="row">
-            <div className="col col-lg-2 col-sm-3 col-6">
-              <CardHomePage
-                namaProduk={"sepatu"}
-                kategori={"nike"}
-                harga={1000000}
-              />
-            </div>
-            <div className="col col-lg-2 col-sm-3 col-6">
-              <CardHomePage
-                namaProduk={"sepatu"}
-                kategori={"nike"}
-                harga={1000000}
-              />
-            </div>
-            <div className="col col-lg-2 col-sm-3 col-6">
-              <CardHomePage
-                namaProduk={"sepatu"}
-                kategori={"nike"}
-                harga={1000000}
-              />
-            </div>
-            <div className="col col-lg-2 col-sm-3 col-6">
-              <CardHomePage
-                namaProduk={"sepatu"}
-                kategori={"nike"}
-                harga={1000000}
-              />
-            </div>
-            <div className="col col-lg-2 col-sm-3 col-6">
-              <CardHomePage
-                namaProduk={"sepatu"}
-                kategori={"nike"}
-                harga={1000000}
-              />
-            </div>
-            <div className="col col-lg-2 col-sm-3 col-6">
-              <CardHomePage
-                namaProduk={"sepatu"}
-                kategori={"nike"}
-                harga={1000000}
-              />
-            </div>
-            <div className="col col-lg-2 col-sm-3 col-6">
-              <CardHomePage
-                namaProduk={"sepatu"}
-                kategori={"nike"}
-                harga={1000000}
-              />
-            </div>
-            <div className="col col-lg-2 col-sm-3 col-6">
-              <CardHomePage
-                namaProduk={"sepatu"}
-                kategori={"nike"}
-                harga={1000000}
-              />
-            </div>
-          </div>
+          <div className="row">{showProduk(produk)}</div>
         </div>
       </div>
       <FooterComponent />

@@ -1,21 +1,29 @@
 import React from "react";
 import { Card } from "react-bootstrap";
 import "../CardHomePage/CardHomePage.css";
-import jordan1 from "../../Img/jordan 1 unc.webp"
-import jordan2 from "../../Img/jordan4.jpg"
 
 export const CardHomePage = ({gambarProduk,namaProduk, kategori, harga, funtion}) => {
+
+  const convertToRupiah = () => {
+    const numb = harga;
+    const format = numb.toString().split("").reverse().join("");
+    const convert = format.match(/\d{1,3}/g);
+    const rupiah = "Rp " + convert.join(".").split("").reverse().join("");
+
+    return rupiah
+  };
+
   return (
     <div className="utama">
       <Card className="cardUtama"onClick={funtion}>
-        <img className="photo-produk" src={jordan1} alt="produk"/>
+        <img className="photo-produk" src={gambarProduk} alt="produk"/>
         <Card.Body>
           <h6 className="nama-produk">{namaProduk}</h6>
           <Card.Text className="textCategory">
             {kategori}
           </Card.Text>
           <Card.Text className="textPrice">
-            {harga}
+            {convertToRupiah()}
           </Card.Text>
         </Card.Body>
       </Card>
