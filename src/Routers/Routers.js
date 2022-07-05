@@ -17,6 +17,7 @@ import { DetailProduct } from "../Views/Product/Detail-Product/DetailProduct";
 import { InfoPenawaran } from "../Views/InfoPenawaran/InfoPenawaran";
 
 import { NavbarComponent } from "../Assets/Components/NavBar/NavbarComponent";
+import { NavbarBeforeLogin } from "../Assets/Components/NavBar/NavbarBeforeLogin";
 
 
 
@@ -25,7 +26,7 @@ export const Routers = () => {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/cobahomeslider" element={<HomeSlider />} />
-      <Route path="/coba" element={<NavbarComponent/>} />
+      <Route path="/coba" element={<NavbarBeforeLogin/>} />
 
       {/* Auth */}
       <Route path="/auth" element={<Auth />}>

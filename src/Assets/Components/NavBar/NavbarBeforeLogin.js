@@ -1,14 +1,15 @@
 import React from 'react'
+import "../NavBar/NavbarBeforeLogin.css"
 
 export const NavbarBeforeLogin = () => {
   return (
-    <div className='container-fluid'>
+    <div className='navbar1'>
         <div className='container-sm'>
             <div className='d-flex justify-content-between'>
-                <p>Sneakers</p>
-                <button>login</button>
+                <p className='text-home'>Sneakers</p>
+                <button className='button-navbarBefore' variant="outline-primary">Login</button>
             </div>
-        </div>
+      </div>
     </div>
   )
 }
