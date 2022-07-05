@@ -3,18 +3,13 @@ import { NavbarSecond } from "../../Assets/Components/NavBar/NavbarSecond";
 import "./profil.css";
 import avatar from "../../Assets/Img/avatar-account.png";
 import Daerah from "../../Assets/Data_Daerah/Data_Daerah";
-import { useNavigate } from "react-router-dom";
-
+import axios from "axios";
 
 export const Profil = () => {
+  const accToken = sessionStorage.getItem("acc_token");
+  const Host = process.env.REACT_APP_HOST;
 
-  let navigate = useNavigate();
-  useEffect(() => {
-    const Token = sessionStorage.getItem("acc_token");
-    if (!Token) {
-      navigate(`/`);
-    }
-  }, []);
+
   //state untuk menampung hasil inputan
   const [ProfilState, setProfilState] = useState({
     foto: null,
@@ -87,6 +82,35 @@ export const Profil = () => {
         [prop]: e.target.value,
       });
     }
+  };
+
+  const updateProfil = (token) => {
+    const FormData = require("form-data");
+    let data = new FormData();
+    data.append("img", ProfilState.foto);
+    data.append("username", ProfilState.nama);
+    data.append("notelepon", ProfilState.no_hp);
+    data.append("provinsi", ProfilState.provinsi);
+    data.append("kota", ProfilState.kota);
+    data.append("alamat", ProfilState.alamat);
+
+    let config = {
+      method: "put",
+      url: `${Host}update/dery@mail.com`,
+      headers: {
+        Authorization: `Bearer ${accToken}`,
+        ...data.getHeaders(),
+      },
+      data: data,
+    };
+
+    axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 
   return (
