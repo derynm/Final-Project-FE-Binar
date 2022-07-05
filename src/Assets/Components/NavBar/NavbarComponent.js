@@ -1,9 +1,15 @@
 import React from 'react';
-import { Container, Nav, Form, FormControl, Button } from 'react-bootstrap';
+import { Container, Nav, Button } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useMediaQuery } from "react-responsive";
+import "../FontawsomeIcons/Font"
 import Navbar from 'react-bootstrap/Navbar';
 import "../NavBar/NavbarComponent.css"
+import arrow from "../../Img/arrow-right-to-bracket-solid.svg"
 
 export const NavbarComponent = () => {
+    const isMobile = useMediaQuery({ query: "(max-width: 426px)" });
+
     return (
         <div>
             <div className='Navbar container nav-footer-bg mb-4'>
@@ -11,25 +17,27 @@ export const NavbarComponent = () => {
                 <Navbar className='nav-footer-bg' expand="md">
                     <Container fluid>
                         <Navbar.Brand href="#">HOME</Navbar.Brand>
-                        <Navbar.Toggle aria-controls="navbarScroll" />
+                        {/* <Navbar.Toggle aria-controls="navbarScroll" />
                         <Navbar.Collapse id="navbarScroll">
                             <Nav
                                 className="me-auto my-2 my-md-0"
                                 style={{ maxHeight: '100px' }}
                                 navbarScroll
                             >
-                                <Nav.Link href="#action1">Home</Nav.Link>
-                            </Nav>
-                            <Form className="searchFrom d-flex">
-                                <FormControl
-                                    type="search"
-                                    placeholder="Search"
-                                    className="me-2"
-                                    aria-label="Search"
-                                />
-                                <Button className='buttonSearch' variant="outline-success">Search</Button>
-                            </Form>
-                        </Navbar.Collapse>
+                            </Nav> */}
+                            <div>
+                                {isMobile ? (
+                                    <Button className='buttonSearch' variant="outline-primary">LOGIN</Button>
+                                ) : (
+                                    <Button className='buttonSearch' variant="outline-primary"><img className='imageButton' src={arrow}
+                                    width={20}>
+                                </img> LOGIN</Button>    
+                                )}
+                            </div>
+                            {/* <Button className='buttonSearch' variant="outline-primary"><img className='imageButton' src={arrow}
+                                width={20}>
+                            </img> LOGIN</Button> */}
+                        {/* </Navbar.Collapse> */}
                     </Container>
                 </Navbar>
             </div>

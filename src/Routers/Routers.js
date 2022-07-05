@@ -8,10 +8,12 @@ import { Register } from "../Views/Auth/Register";
 import { HomeSlider } from "../Assets/Components/HomeSlider/HomeSlider";
 import { Profil } from "../Views/User/Profil";
 import { CardHomePage } from "../Assets/Components/CardHomePage/CardHomePage";
+import { NavbarAfterLogin } from "../Assets/Components/NavBar/NavbarAfterLogin";
 
 import { Dummy } from "../Views/Dummy";
 
 import { DetailProduct } from "../Views/Product/Detail-Product/DetailProduct";
+import { NavbarComponent } from "../Assets/Components/NavBar/NavbarComponent";
 
 
 export const Routers = () => {
@@ -19,7 +21,7 @@ export const Routers = () => {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/cobahomeslider" element={<HomeSlider />} />
-      <Route path="/cobacard" element={<CardHomePage />} />
+      <Route path="/coba" element={<NavbarComponent/>} />
 
       {/* Auth */}
       <Route path="/auth" element={<Auth />}>
