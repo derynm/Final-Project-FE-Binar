@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavbarSecond } from "../../Assets/Components/NavBar/NavbarSecond";
 import "./profil.css";
 import avatar from "../../Assets/Img/avatar-account.png";
@@ -8,6 +8,8 @@ import axios from "axios";
 export const Profil = () => {
   const accToken = sessionStorage.getItem("acc_token");
   const Host = process.env.REACT_APP_HOST;
+
+
   //state untuk menampung hasil inputan
   const [ProfilState, setProfilState] = useState({
     foto: null,
