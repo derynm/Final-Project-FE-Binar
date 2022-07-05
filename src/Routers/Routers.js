@@ -13,7 +13,11 @@ import { NavbarAfterLogin } from "../Assets/Components/NavBar/NavbarAfterLogin";
 import { Dummy } from "../Views/Dummy";
 
 import { DetailProduct } from "../Views/Product/Detail-Product/DetailProduct";
+
+import { InfoPenawaran } from "../Views/InfoPenawaran/InfoPenawaran";
+
 import { NavbarComponent } from "../Assets/Components/NavBar/NavbarComponent";
+
 
 
 export const Routers = () => {
@@ -36,6 +40,8 @@ export const Routers = () => {
       <Route path="/dummy" element={<Dummy />} />
       
       <Route path="/detail-product" element={<DetailProduct/>} />
+
+      <Route path="/info-penawaran" element={<InfoPenawaran/>} />
 
     </Routes>
   );
