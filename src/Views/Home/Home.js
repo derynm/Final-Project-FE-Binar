@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../Home/Home.css";
 import "../../Assets/Components/FontawsomeIcons/Font";
 import { FooterComponent } from "../../Assets/Components/Footer/FooterComponent";
@@ -12,7 +12,8 @@ import { NavbarAfterLogin } from "../../Assets/Components/NavBar/NavbarAfterLogi
 import produk from "../../Assets/Data_Dummy/DataProdukDummy";
 import { NavbarBeforeLogin } from "../../Assets/Components/NavBar/NavbarBeforeLogin";
 
-export const Home = () => {
+export const Home = (props) => {
+
   const [homeState, sethomeState] = useState({
     category: "semua",
   });
@@ -23,6 +24,11 @@ export const Home = () => {
       [prop]: e.target.value,
     });
   };
+
+  useEffect(() => {
+
+  }, [])
+  
 
   const showProduk = (data, kategori) => {
     if (kategori === "semua") {
