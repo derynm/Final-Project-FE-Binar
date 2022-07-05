@@ -10,6 +10,7 @@ import { CardHomePage } from "../../Assets/Components/CardHomePage/CardHomePage"
 import { NavbarAfterLogin } from "../../Assets/Components/NavBar/NavbarAfterLogin";
 
 import produk from "../../Assets/Data_Dummy/DataProdukDummy";
+import { NavbarBeforeLogin } from "../../Assets/Components/NavBar/NavbarBeforeLogin";
 
 export const Home = () => {
   const [homeState, sethomeState] = useState({
@@ -57,7 +58,7 @@ export const Home = () => {
 
   return (
     <div>
-      <NavbarAfterLogin />
+      <NavbarBeforeLogin/>
       <div className="container-sm">
         <div className="home-carousel ">
           <HomeSlider />
