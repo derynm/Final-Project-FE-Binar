@@ -1,8 +1,8 @@
 import axios from "axios";
-import { FETCH_DATA_USER_DETAIL } from "./Types";
+import { FETCH_DATA_PRODUKL } from "./Types";
 
-function fetchDetailUser(token) {
+function fetchDataProduk(token) {
   return "hai";
 }
 
-export { fetchDetailUser };
+export { fetchDataProduk };
