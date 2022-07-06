@@ -1,5 +1,8 @@
 import axios from "axios";
 import { FETCH_DATA_PRODUKL, FETCH_USER_DETAIL } from "./Types";
+import { useNavigate } from "react-router-dom";
+
+
 
 function fetchDataUser(token) {
   let config = {
@@ -19,6 +22,7 @@ function fetchDataUser(token) {
       })
       .catch(function (error) {
         console.log(error);
+        window.location.replace(`/auth/login`)
       });
   };
 }
