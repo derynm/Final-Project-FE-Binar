@@ -15,7 +15,7 @@ export const NavbarAfterLogin = () => {
           <div
             className={
               isMobile ? "null" : "container-sm d-flex justify-content-between"
-        }
+            }
           >
             <div
               className="d-flex justify-content-between"
@@ -39,10 +39,18 @@ export const NavbarAfterLogin = () => {
                     )}
                   </div>
                   <div className="imageButton">
-                    <img src={alarm} width={20} alt="" />
+                    {isMobile ? (
+                      <p>Notifikasi</p>
+                    ) : (
+                      <img src={alarm} width={20} alt="" />
+                    )}
                   </div>
                   <div className="imageButton">
-                    <img src={user} width={20} alt="" />
+                    {isMobile ? (
+                      <p>Profile</p>
+                    ) : (
+                      <img src={user} width={20} alt="" />
+                    )}
                   </div>
                 </Nav>
               </Navbar.Collapse>

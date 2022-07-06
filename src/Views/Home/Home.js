@@ -1,35 +1,77 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../Home/Home.css";
 import "../../Assets/Components/FontawsomeIcons/Font";
 import { FooterComponent } from "../../Assets/Components/Footer/FooterComponent";
 import { HomeSlider } from "../../Assets/Components/HomeSlider/HomeSlider";
-import { NavbarComponent } from "../../Assets/Components/NavBar/NavbarComponent";
-
+import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { CardHomePage } from "../../Assets/Components/CardHomePage/CardHomePage";
 import { NavbarAfterLogin } from "../../Assets/Components/NavBar/NavbarAfterLogin";
-
 import produk from "../../Assets/Data_Dummy/DataProdukDummy";
+import { NavbarBeforeLogin } from "../../Assets/Components/NavBar/NavbarBeforeLogin";
+import { fetchDataUser } from "../../Redux/Action/Action";
 
-export const Home = () => {
-  const showProduk = (data) => {
-    return   data.map((value, key) => {
-      return (
-        <div className="col col-lg-2 col-sm-3 col-6" key={key}>
-          <CardHomePage
-            gambarProduk={value.photo}
-            namaProduk={value.title}
-            kategori={value.category}
-            harga={value.price}
-          />
-        </div>
-      );
+const Home = (props) => {
+  const [homeState, sethomeState] = useState({
+    category: "semua",
+    isLogin: true,
+  });
+
+  const handleState = (e, prop) => {
+    sethomeState({
+      ...homeState,
+      [prop]: e.target.value,
     });
+    
+  };
+
+  useEffect(() => {
+    const Token = sessionStorage.getItem("acc_token");
+    if (!Token) {
+      sethomeState({
+        ...homeState,
+        isLogin: false,
+      });
+    }
+    props.getUserDetail(Token);
+  }, []);
+
+  const showProduk = (data, kategori) => {
+    if (kategori === "semua") {
+      return data.map((value, key) => {
+        return (
+          <div className="col col-lg-2 col-sm-3 col-6" key={key}>
+            <CardHomePage
+              gambarProduk={value.photo}
+              namaProduk={value.title}
+              kategori={value.category}
+              harga={value.price}
+            />
+          </div>
+        );
+      });
+    } else {
+      return data
+        .filter((value) => value.category === kategori)
+        .map((value, key) => {
+          return (
+            <div className="col col-lg-2 col-sm-3 col-6" key={key}>
+              <CardHomePage
+                gambarProduk={value.photo}
+                namaProduk={value.title}
+                kategori={value.category}
+                harga={value.price}
+              />
+            </div>
+          );
+        });
+    }
   };
 
   return (
     <div>
-      <NavbarAfterLogin />
+    {console.log(props.userDetail)}
+      {homeState.isLogin ? (<NavbarAfterLogin/>):(<NavbarBeforeLogin />)}
       <div className="container-sm">
         <div className="home-carousel ">
           <HomeSlider />
@@ -39,7 +81,14 @@ export const Home = () => {
           <div className="home-kategori-button-grup">
             <div className="row">
               <div className="col col-lg-2 col-sm-3 col-4">
-                <button className="button-kategori">
+                <button
+                  className="button-kategori"
+                  type="button"
+                  value="semua"
+                  onClick={(e) => {
+                    handleState(e, "category");
+                  }}
+                >
                   <FontAwesomeIcon
                     className="icon-button1"
                     icon="fa-brands fa-searchengin"
@@ -49,7 +98,14 @@ export const Home = () => {
                 </button>
               </div>
               <div className="col col-lg-2 col-sm-3 col-4">
-                <button className="button-kategori">
+                <button
+                  className="button-kategori"
+                  type="button"
+                  value="nike"
+                  onClick={(e) => {
+                    handleState(e, "category");
+                  }}
+                >
                   <FontAwesomeIcon
                     className="icon-button1"
                     icon="fa-brands fa-searchengin"
@@ -59,7 +115,14 @@ export const Home = () => {
                 </button>
               </div>
               <div className="col col-lg-2 col-sm-3 col-4">
-                <button className="button-kategori">
+                <button
+                  className="button-kategori"
+                  type="button"
+                  value="vans"
+                  onClick={(e) => {
+                    handleState(e, "category");
+                  }}
+                >
                   <FontAwesomeIcon
                     className="icon-button1"
                     icon="fa-brands fa-searchengin"
@@ -69,7 +132,14 @@ export const Home = () => {
                 </button>
               </div>
               <div className="col col-lg-2 col-sm-3 col-4">
-                <button className="button-kategori">
+                <button
+                  className="button-kategori"
+                  type="button"
+                  value="puma"
+                  onClick={(e) => {
+                    handleState(e, "category");
+                  }}
+                >
                   <FontAwesomeIcon
                     className="icon-button1"
                     icon="fa-brands fa-searchengin"
@@ -79,7 +149,14 @@ export const Home = () => {
                 </button>
               </div>
               <div className="col col-lg-2 col-sm-3 col-4">
-                <button className="button-kategori">
+                <button
+                  className="button-kategori"
+                  type="button"
+                  value="jordan"
+                  onClick={(e) => {
+                    handleState(e, "category");
+                  }}
+                >
                   <FontAwesomeIcon
                     className="icon-button1"
                     icon="fa-brands fa-searchengin"
@@ -89,7 +166,14 @@ export const Home = () => {
                 </button>
               </div>
               <div className="col col-lg-2 col-sm-3 col-4">
-                <button className="button-kategori">
+                <button
+                  className="button-kategori"
+                  type="button"
+                  value="adidas"
+                  onClick={(e) => {
+                    handleState(e, "category");
+                  }}
+                >
                   <FontAwesomeIcon
                     className="icon-button1"
                     icon="fa-brands fa-searchengin"
@@ -102,10 +186,24 @@ export const Home = () => {
           </div>
         </div>
         <div className="home-card-grup">
-          <div className="row">{showProduk(produk)}</div>
+          <div className="row">{showProduk(produk, homeState.category)}</div>
         </div>
       </div>
       <FooterComponent />
     </div>
   );
 };
+
+const mapStateToProps = (state) => {
+  return {
+    userDetail: state.home.user_data,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getUserDetail: (token) => dispatch(fetchDataUser(token)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
