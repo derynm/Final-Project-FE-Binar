@@ -3,19 +3,18 @@ import "../Home/Home.css";
 import "../../Assets/Components/FontawsomeIcons/Font";
 import { FooterComponent } from "../../Assets/Components/Footer/FooterComponent";
 import { HomeSlider } from "../../Assets/Components/HomeSlider/HomeSlider";
-import { NavbarComponent } from "../../Assets/Components/NavBar/NavbarComponent";
-
+import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { CardHomePage } from "../../Assets/Components/CardHomePage/CardHomePage";
 import { NavbarAfterLogin } from "../../Assets/Components/NavBar/NavbarAfterLogin";
-
 import produk from "../../Assets/Data_Dummy/DataProdukDummy";
 import { NavbarBeforeLogin } from "../../Assets/Components/NavBar/NavbarBeforeLogin";
+import { fetchDataUser } from "../../Redux/Action/Action";
 
-export const Home = (props) => {
-
+const Home = (props) => {
   const [homeState, sethomeState] = useState({
     category: "semua",
+    isLogin: true,
   });
 
   const handleState = (e, prop) => {
@@ -23,12 +22,19 @@ export const Home = (props) => {
       ...homeState,
       [prop]: e.target.value,
     });
+    
   };
 
   useEffect(() => {
-
-  }, [])
-  
+    const Token = sessionStorage.getItem("acc_token");
+    if (!Token) {
+      sethomeState({
+        ...homeState,
+        isLogin: false,
+      });
+    }
+    props.getUserDetail(Token);
+  }, []);
 
   const showProduk = (data, kategori) => {
     if (kategori === "semua") {
@@ -64,7 +70,8 @@ export const Home = (props) => {
 
   return (
     <div>
-      <NavbarBeforeLogin/>
+    {console.log(props.userDetail)}
+      {homeState.isLogin ? (<NavbarAfterLogin/>):(<NavbarBeforeLogin />)}
       <div className="container-sm">
         <div className="home-carousel ">
           <HomeSlider />
@@ -186,3 +193,17 @@ export const Home = (props) => {
     </div>
   );
 };
+
+const mapStateToProps = (state) => {
+  return {
+    userDetail: state.home.user_data,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getUserDetail: (token) => dispatch(fetchDataUser(token)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

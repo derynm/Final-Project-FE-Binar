@@ -10,7 +10,7 @@ const ReducerHome = (state = initialState, action) => {
     case FETCH_USER_DETAIL:
       return {
         ...state,
-        user_data: action.user_data.data,
+        user_data: action.userData.data,
       };
 
     default:
