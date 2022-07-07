@@ -5,9 +5,16 @@ import { useMediaQuery } from "react-responsive";
 import list from "../../Img/list.svg";
 import alarm from "../../Img/alarm.svg";
 import user from "../../Img/user.svg";
+import { useNavigate } from "react-router-dom";
 
 export const NavbarAfterLogin = () => {
   const isMobile = useMediaQuery({ query: "(max-width: 426px)" });
+  const navigate = useNavigate();
+
+  const logout = () => {
+    sessionStorage.removeItem("acc_token");
+    window.location.reload(false);
+  };
   return (
     <div>
       <Navbar expand="lg">
@@ -47,9 +54,54 @@ export const NavbarAfterLogin = () => {
                   </div>
                   <div className="imageButton">
                     {isMobile ? (
-                      <p>Profile</p>
+                      <>
+                        <p>Profile</p>
+                        <p
+                          onClick={() => {
+                            logout();
+                          }}
+                        >
+                          Logout
+                        </p>
+                      </>
                     ) : (
-                      <img src={user} width={20} alt="" />
+                      <div>
+                        <div className="dropdown remove-icon">
+                          <p
+                            className="dropdown-toggle"
+                            id="dropdownMenuButton1"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                          >
+                            <img src={user} width={20} alt="" />
+                          </p>
+                          <ul
+                            className="dropdown-menu dropdown-menu-end"
+                            aria-labelledby="dropdownMenuButton1"
+                          >
+                            <li>
+                              <p
+                                className="dropdown-item"
+                                onClick={() => {
+                                  navigate(`/profil`);
+                                }}
+                              >
+                                Profil
+                              </p>
+                            </li>
+                            <li>
+                              <p
+                                className="dropdown-item"
+                                onClick={() => {
+                                  logout();
+                                }}
+                              >
+                                Logout
+                              </p>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
                     )}
                   </div>
                 </Nav>
