@@ -4,7 +4,6 @@ import "../../Assets/Components/FontawsomeIcons/Font";
 import { FooterComponent } from "../../Assets/Components/Footer/FooterComponent";
 import { HomeSlider } from "../../Assets/Components/HomeSlider/HomeSlider";
 import { connect } from "react-redux";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { CardHomePage } from "../../Assets/Components/CardHomePage/CardHomePage";
 import { NavbarAfterLogin } from "../../Assets/Components/NavBar/NavbarAfterLogin";
 import produk from "../../Assets/Data_Dummy/DataProdukDummy";

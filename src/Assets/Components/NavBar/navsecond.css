@@ -22,12 +22,14 @@
   font-weight: bolder;
   color: white;
   margin-left: 20px;
+  cursor: pointer;
 }
 
 .page-name-second {
   color: white;
   font-weight: bolder;
   font-size: larger;
+  cursor: default;
 }
 
 @media (max-width: 426px) {
