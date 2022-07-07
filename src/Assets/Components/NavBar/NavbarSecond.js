@@ -14,7 +14,7 @@ export const NavbarSecond = ({ page }) => {
           {isMobile ? (
             <IconMenu onClick={()=>{navigate(-1)}}/>
           ) : (
-            <span className="nav-content-logo">Sneakers.</span>
+            <span className="nav-content-logo" onClick={()=>{navigate(`/`)}}>Sneakers.</span>
           )}
         </div>
         <div>
