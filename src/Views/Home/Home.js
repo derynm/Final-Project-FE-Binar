@@ -22,7 +22,6 @@ const Home = (props) => {
       ...homeState,
       [prop]: e.target.value,
     });
-    
   };
 
   useEffect(() => {
@@ -30,10 +29,11 @@ const Home = (props) => {
     if (!Token) {
       sethomeState({
         ...homeState,
-        isLogin: false,
+        isLogin: !homeState.isLogin,
       });
+    } else {
+      props.getUserDetail(Token);
     }
-    props.getUserDetail(Token);
   }, []);
 
   const showProduk = (data, kategori) => {
@@ -70,8 +70,8 @@ const Home = (props) => {
 
   return (
     <div>
-    {console.log(props.userDetail)}
-      {homeState.isLogin ? (<NavbarAfterLogin/>):(<NavbarBeforeLogin />)}
+      {console.log(props.userDetail)}
+      {homeState.isLogin ? <NavbarAfterLogin /> : <NavbarBeforeLogin />}
       <div className="container-sm">
         <div className="home-carousel ">
           <HomeSlider />
@@ -89,11 +89,6 @@ const Home = (props) => {
                     handleState(e, "category");
                   }}
                 >
-                  <FontAwesomeIcon
-                    className="icon-button1"
-                    icon="fa-brands fa-searchengin"
-                    size="xl"
-                  />
                   Semua
                 </button>
               </div>
@@ -106,11 +101,6 @@ const Home = (props) => {
                     handleState(e, "category");
                   }}
                 >
-                  <FontAwesomeIcon
-                    className="icon-button1"
-                    icon="fa-brands fa-searchengin"
-                    size="xl"
-                  />
                   Nike
                 </button>
               </div>
@@ -123,11 +113,6 @@ const Home = (props) => {
                     handleState(e, "category");
                   }}
                 >
-                  <FontAwesomeIcon
-                    className="icon-button1"
-                    icon="fa-brands fa-searchengin"
-                    size="xl"
-                  />
                   Vans
                 </button>
               </div>
@@ -140,11 +125,6 @@ const Home = (props) => {
                     handleState(e, "category");
                   }}
                 >
-                  <FontAwesomeIcon
-                    className="icon-button1"
-                    icon="fa-brands fa-searchengin"
-                    size="xl"
-                  />
                   Puma
                 </button>
               </div>
@@ -157,11 +137,6 @@ const Home = (props) => {
                     handleState(e, "category");
                   }}
                 >
-                  <FontAwesomeIcon
-                    className="icon-button1"
-                    icon="fa-brands fa-searchengin"
-                    size="xl"
-                  />
                   Jordan
                 </button>
               </div>
@@ -173,12 +148,7 @@ const Home = (props) => {
                   onClick={(e) => {
                     handleState(e, "category");
                   }}
-                >
-                  <FontAwesomeIcon
-                    className="icon-button1"
-                    icon="fa-brands fa-searchengin"
-                    size="xl"
-                  />
+                > 
                   Adidas
                 </button>
               </div>

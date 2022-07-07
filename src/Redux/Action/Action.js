@@ -2,8 +2,6 @@ import axios from "axios";
 import { FETCH_DATA_PRODUKL, FETCH_USER_DETAIL } from "./Types";
 import { useNavigate } from "react-router-dom";
 
-
-
 function fetchDataUser(token) {
   let config = {
     method: "get",
@@ -21,8 +19,9 @@ function fetchDataUser(token) {
         });
       })
       .catch(function (error) {
-        console.log(error);
+        alert("Sesi anda telah berakhir mohon login kembali");
         window.location.replace(`/auth/login`)
+
       });
   };
 }
