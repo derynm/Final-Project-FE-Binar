@@ -9,6 +9,7 @@ import { NavbarAfterLogin } from "../../Assets/Components/NavBar/NavbarAfterLogi
 import produk from "../../Assets/Data_Dummy/DataProdukDummy";
 import { NavbarBeforeLogin } from "../../Assets/Components/NavBar/NavbarBeforeLogin";
 import { fetchDataUser } from "../../Redux/Action/Action";
+import { ButtonSell } from "../../Assets/Components/Button/ButtonSell/ButtonSell";
 
 const Home = (props) => {
   const [homeState, sethomeState] = useState({
@@ -68,8 +69,11 @@ const Home = (props) => {
   };
 
   return (
-    <div>
+<>
+<ButtonSell/>
+<div>
       {console.log(props.userDetail)}
+      
       {homeState.isLogin ? <NavbarAfterLogin /> : <NavbarBeforeLogin />}
       <div className="container-sm">
         <div className="home-carousel ">
@@ -159,7 +163,9 @@ const Home = (props) => {
         </div>
       </div>
       <FooterComponent />
+      
     </div>
+</>
   );
 };
 

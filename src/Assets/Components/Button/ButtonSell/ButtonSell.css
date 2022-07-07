@@ -1,0 +1,32 @@
+.button-sell-main {
+    height: 100vh;
+    padding-bottom: 30px;
+    background-color: none;
+    position:fixed ;
+    margin: auto;
+    z-index: 10;
+}
+
+.button-sell-content {
+  transition: 400ms;
+  background-color: #43c4f7;
+  height: 38px;
+  max-width: fit-content;
+  padding: 4px 4px;
+  border-radius: 32px;
+  color: #ffffff;
+  font-size: 0px;
+  cursor: pointer;
+  position: relative;
+}
+
+.button-sell-text {
+  margin-bottom: 0px;
+  text-align: center;
+}
+
+.button-sell-content:hover {
+  transition: 600ms;
+  font-size: 20px;
+  padding: 4px 12px;
+}
