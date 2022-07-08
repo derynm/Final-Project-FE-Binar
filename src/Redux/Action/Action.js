@@ -9,8 +9,8 @@ function fetchDataUser(token) {
       Authorization: `Bearer ${token}`,
     },
   };
-  return (dispatch) => {
-    axios(config)
+  return async (dispatch) => {
+    await axios(config)
       .then(function (response) {
         dispatch({
           type: FETCH_USER_DETAIL,
@@ -19,9 +19,7 @@ function fetchDataUser(token) {
       })
       .catch(function (error) {
         alert("Sesi anda telah berakhir mohon login kembali");
-        window.location.replace(`/auth/login`)
-
-
+        window.location.replace(`/auth/login`);
       });
   };
 }
