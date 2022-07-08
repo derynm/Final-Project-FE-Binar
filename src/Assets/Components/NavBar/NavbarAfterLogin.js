@@ -35,7 +35,7 @@ export const NavbarAfterLogin = () => {
             <div className="d-flex align-items-center">
               <Navbar.Collapse id="basic-navbar-nav ">
                 <Nav
-                  className="me-auto d-flex justify-content-between"
+                  className="me-auto d-flex justify-content-between align-items-lg-center"
                   style={isMobile ? null : { width: "100px" }}
                 >
                   <div className="imageButton">
