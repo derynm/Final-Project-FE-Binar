@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { ButtonSell } from "../Assets/Components/Button/ButtonSell/ButtonSell";
 import { ModalDelete } from "../Assets/Components/Modal/ModalDelete";
 
 export const Dummy = () => {
@@ -9,10 +10,12 @@ export const Dummy = () => {
   }
   return (
     <div>
-      {isClosed ? null : <ModalDelete closed={()=>{handleModal()}}/> }
+      {/* {isClosed ? null : <ModalDelete closed={()=>{handleModal()}}/> }
 
       <div>aaddsdddddddddddddddddddddd</div>
-      <button onClick={()=>{handleModal()}}>cek</button>
+      <button onClick={()=>{handleModal()}}>cek</button> */}
+
+      <ButtonSell/>
     </div>
   );
 };
