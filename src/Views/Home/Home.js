@@ -70,7 +70,7 @@ const Home = (props) => {
 
   return (
     <>
-      {props.userDetail.roles?.[0]?.rolesId === 2 ? <ButtonSell /> : null}
+
       <div>
         {console.log(props.userDetail)}
 
@@ -162,8 +162,9 @@ const Home = (props) => {
             <div className="row">{showProduk(produk, homeState.category)}</div>
           </div>
         </div>
-        <FooterComponent />
+        <FooterComponent/>
       </div>
+      {props.userDetail.roles?.[0]?.rolesId === 2 ? <ButtonSell /> : null}
     </>
   );
 };

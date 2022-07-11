@@ -2,16 +2,17 @@
     height: 100vh;
     padding-bottom: 30px;
     background-color: none;
-    position:fixed ;
-    margin: auto;
-    z-index: 10;
+    position: fixed;  
+    top: 90vh;
+    left: 50%;
+    -ms-transform: translate(-10%, -10%);
+    transform: translate(-50%, -0%);
 
 }
 
 .button-sell-content {
   transition: 400ms;
   background-color: #43c4f7;
-  height: 38px;
   max-width: fit-content;
   padding: 4px 4px;
   border-radius: 32px;
@@ -28,7 +29,12 @@
 }
 
 .button-sell-content:hover {
-  transition: 600ms;
-  font-size: 20px;
   padding: 4px 12px;
+  font-size: 20px;
+}
+
+@media (max-width: 426px) {
+  .button-sell-main {
+    
+  }
 }

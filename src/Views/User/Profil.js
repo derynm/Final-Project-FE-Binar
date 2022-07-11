@@ -185,6 +185,7 @@ const Profil = (props) => {
                 onChange={(e) => {
                   handleInput(e, "nama");
                 }}
+                disabled={true}
                 defaultValue={props.userDetail.username}
               />
             </div>
