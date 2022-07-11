@@ -1,4 +1,5 @@
-.imageButton {
+.imageButton p {
+  margin-bottom: 0px !important;
 }
 
 .nav-after-edit {
@@ -12,7 +13,7 @@
 }
 
 @media (max-width: 426px) {
-  .imageButton {
-    margin-top: 12px;
+  .imageButton p {
+    margin-bottom: 1rem !important;
   }
 }
