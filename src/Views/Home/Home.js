@@ -162,6 +162,9 @@ const Home = (props) => {
             <div className="row">{showProduk(produk, homeState.category)}</div>
           </div>
         </div>
+
+        <FooterComponent/>
+
       </div>
       {props.userDetail.roles?.[0]?.rolesId === 2 ? <ButtonSell /> : null}
     </>
