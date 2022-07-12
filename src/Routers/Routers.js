@@ -1,6 +1,6 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import { AddProduct } from "../Views/Product/AddProduct";
+import AddProduct from "../Views/Product/AddProduk/AddProduct";
 import { Auth } from "../Views/Auth/Auth";
 import { Login } from "../Views/Auth/Login";
 import { Register } from "../Views/Auth/Register";
