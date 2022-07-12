@@ -138,7 +138,7 @@ const Profil = (props) => {
   return (
     <div className="profil-main">
       {console.log(props.userDetail)}
-      <NavbarSecond page={"Profil"} />
+      <NavbarSecond page={"Profil Akun"} />
       <div className="container-sm profil-content">
         <div className="row">
           <div className="col col-lg-4 col-sm-12 col-12 d-flex flex-column align-items-center justify-content-center profil-left">

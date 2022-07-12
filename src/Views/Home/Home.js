@@ -9,6 +9,7 @@ import { NavbarAfterLogin } from "../../Assets/Components/NavBar/NavbarAfterLogi
 import produk from "../../Assets/Data_Dummy/DataProdukDummy";
 import { NavbarBeforeLogin } from "../../Assets/Components/NavBar/NavbarBeforeLogin";
 import { fetchDataUser } from "../../Redux/Action/Action";
+import { ButtonSell } from "../../Assets/Components/Button/ButtonSell/ButtonSell";
 
 const Home = (props) => {
   const [homeState, sethomeState] = useState({
@@ -68,98 +69,102 @@ const Home = (props) => {
   };
 
   return (
-    <div>
-      {console.log(props.userDetail)}
-      {homeState.isLogin ? <NavbarAfterLogin /> : <NavbarBeforeLogin />}
-      <div className="container-sm">
-        <div className="home-carousel ">
-          <HomeSlider />
-        </div>
-        <div className="home-kategori">
-          <h5>Telusuri kategori</h5>
-          <div className="home-kategori-button-grup">
-            <div className="row">
-              <div className="col col-lg-2 col-sm-3 col-4">
-                <button
-                  className="button-kategori"
-                  type="button"
-                  value="semua"
-                  onClick={(e) => {
-                    handleState(e, "category");
-                  }}
-                >
-                  Semua
-                </button>
-              </div>
-              <div className="col col-lg-2 col-sm-3 col-4">
-                <button
-                  className="button-kategori"
-                  type="button"
-                  value="nike"
-                  onClick={(e) => {
-                    handleState(e, "category");
-                  }}
-                >
-                  Nike
-                </button>
-              </div>
-              <div className="col col-lg-2 col-sm-3 col-4">
-                <button
-                  className="button-kategori"
-                  type="button"
-                  value="vans"
-                  onClick={(e) => {
-                    handleState(e, "category");
-                  }}
-                >
-                  Vans
-                </button>
-              </div>
-              <div className="col col-lg-2 col-sm-3 col-4">
-                <button
-                  className="button-kategori"
-                  type="button"
-                  value="puma"
-                  onClick={(e) => {
-                    handleState(e, "category");
-                  }}
-                >
-                  Puma
-                </button>
-              </div>
-              <div className="col col-lg-2 col-sm-3 col-4">
-                <button
-                  className="button-kategori"
-                  type="button"
-                  value="jordan"
-                  onClick={(e) => {
-                    handleState(e, "category");
-                  }}
-                >
-                  Jordan
-                </button>
-              </div>
-              <div className="col col-lg-2 col-sm-3 col-4">
-                <button
-                  className="button-kategori"
-                  type="button"
-                  value="adidas"
-                  onClick={(e) => {
-                    handleState(e, "category");
-                  }}
-                > 
-                  Adidas
-                </button>
+    <>
+
+      <div>
+        {console.log(props.userDetail)}
+
+        {homeState.isLogin ? <NavbarAfterLogin /> : <NavbarBeforeLogin />}
+        <div className="container-sm">
+          <div className="home-carousel ">
+            <HomeSlider />
+          </div>
+          <div className="home-kategori">
+            <h5>Telusuri kategori</h5>
+            <div className="home-kategori-button-grup">
+              <div className="row">
+                <div className="col col-lg-2 col-sm-3 col-4">
+                  <button
+                    className="button-kategori"
+                    type="button"
+                    value="semua"
+                    onClick={(e) => {
+                      handleState(e, "category");
+                    }}
+                  >
+                    Semua
+                  </button>
+                </div>
+                <div className="col col-lg-2 col-sm-3 col-4">
+                  <button
+                    className="button-kategori"
+                    type="button"
+                    value="nike"
+                    onClick={(e) => {
+                      handleState(e, "category");
+                    }}
+                  >
+                    Nike
+                  </button>
+                </div>
+                <div className="col col-lg-2 col-sm-3 col-4">
+                  <button
+                    className="button-kategori"
+                    type="button"
+                    value="vans"
+                    onClick={(e) => {
+                      handleState(e, "category");
+                    }}
+                  >
+                    Vans
+                  </button>
+                </div>
+                <div className="col col-lg-2 col-sm-3 col-4">
+                  <button
+                    className="button-kategori"
+                    type="button"
+                    value="puma"
+                    onClick={(e) => {
+                      handleState(e, "category");
+                    }}
+                  >
+                    Puma
+                  </button>
+                </div>
+                <div className="col col-lg-2 col-sm-3 col-4">
+                  <button
+                    className="button-kategori"
+                    type="button"
+                    value="jordan"
+                    onClick={(e) => {
+                      handleState(e, "category");
+                    }}
+                  >
+                    Jordan
+                  </button>
+                </div>
+                <div className="col col-lg-2 col-sm-3 col-4">
+                  <button
+                    className="button-kategori"
+                    type="button"
+                    value="adidas"
+                    onClick={(e) => {
+                      handleState(e, "category");
+                    }}
+                  >
+                    Adidas
+                  </button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div className="home-card-grup">
-          <div className="row">{showProduk(produk, homeState.category)}</div>
+          <div className="home-card-grup">
+            <div className="row">{showProduk(produk, homeState.category)}</div>
+          </div>
         </div>
       </div>
-      <FooterComponent />
-    </div>
+      {props.userDetail.roles?.[0]?.rolesId === 2 ? <ButtonSell /> : null}
+    </>
   );
 };
 
