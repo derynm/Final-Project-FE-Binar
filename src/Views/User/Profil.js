@@ -16,7 +16,7 @@ const Profil = (props) => {
 
   return (
     <div className="profil-main">
-    {console.log(props.userDetail.length)}
+    {console.log(props.userDetail)}
       <NavbarSecond page={"Profil Akun"} />
 
       <Outlet />

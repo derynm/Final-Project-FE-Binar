@@ -125,15 +125,16 @@ const EditProfil = (props) => {
         navigate(`/`);
       })
       .catch(function (error) {
-        const err_token = error.response.data.error_message.split(" ");
-        if (err_token[3] === "expired") {
-          setisLoading(false);
-          alert("Sesi anda telah berakhir mohon login kembali");
-          navigate(`/auth/login`);
-        } else {
-          setisLoading(false);
-          alert("Update profil gagal");
-        }
+        // const err_token = error.response.data.error_message.split(" ");
+        // if (err_token[3] === "expired") {
+        //   setisLoading(false);
+        //   alert("Sesi anda telah berakhir mohon login kembali");
+        //   navigate(`/auth/login`);
+        // } else {
+        //   setisLoading(false);
+        //   alert("Update profil gagal");
+        // }
+        console.log(error)
       });
   };
 
