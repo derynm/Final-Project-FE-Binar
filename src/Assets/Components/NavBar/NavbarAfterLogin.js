@@ -83,7 +83,7 @@ export const NavbarAfterLogin = () => {
                               <p
                                 className="dropdown-item"
                                 onClick={() => {
-                                  navigate(`/profil`);
+                                  navigate(`/profil/detail`);
                                 }}
                               >
                                 Profil
