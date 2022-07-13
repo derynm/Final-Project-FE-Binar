@@ -1,8 +1,9 @@
-import { FETCH_DATA_PRODUK, FETCH_USER_DETAIL} from "../Action/Types";
+import { FETCH_DATA_PRODUK, FETCH_USER_DETAIL, FETCH_DETAIL_PRODUK} from "../Action/Types";
 
 const initialState = {
   user_data: [],
   data_produk: [],
+  detail_produk: [],
 };
 
 const ReducerHome = (state = initialState, action) => {
@@ -19,9 +20,17 @@ const ReducerHome = (state = initialState, action) => {
         data_produk: action.dataProduk.data,
       }
     
+    case FETCH_DETAIL_PRODUK:
+        return{
+          ...state,
+          detail_produk: action.detailProduk.data,
+        }
+    
     default:
       return state;
   }
 };
 
-export default ReducerHome;
+
+
+export default (ReducerHome);
