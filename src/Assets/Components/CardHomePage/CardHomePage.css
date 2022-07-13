@@ -1,11 +1,13 @@
+
 .cardUtama {
   border-radius: 8px;
   background: #ffffff;
   cursor: pointer;
   box-shadow: 0px 0px 6px #dbdbdb;
   margin: 8px;
-  max-height: 230px;
+  max-height: 250px;
   height: 100%;
+  flex-grow: 1;
 }
 .textCategory{
   color: darkgrey;
@@ -17,7 +19,31 @@
 }
 .nama-produk{
   font-weight: bolder;
+  height: 40px;
+
 }
+
+.nama-produk .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -60px;
+}
+
+.nama-produk:hover .tooltiptext {
+  visibility: visible;
+}
+
 .photo-produk{
   padding: 4px;
   border-radius: 8px;

@@ -6,8 +6,27 @@ export const Dummy = () => {
   const [isClosed, setisClosed] = useState(true);
 
   const handleModal = () => {
-    setisClosed(!isClosed)
-  }
+    setisClosed(!isClosed);
+  };
+
+  const test = () => {
+    var axios = require("axios");
+
+    var config = {
+      method: "get",
+      url: "https://sneakers-staging.herokuapp.com/product/display-all",
+      headers: {},
+    };
+
+    axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
   return (
     <div>
       {/* {isClosed ? null : <ModalDelete closed={()=>{handleModal()}}/> }
@@ -15,7 +34,7 @@ export const Dummy = () => {
       <div>aaddsdddddddddddddddddddddd</div>
       <button onClick={()=>{handleModal()}}>cek</button> */}
 
-      <ButtonSell/>
+      <button onClick={() => {test()}}>coba</button>
     </div>
   );
 };

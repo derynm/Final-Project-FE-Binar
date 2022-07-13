@@ -13,16 +13,36 @@ export const CardHomePage = ({gambarProduk,namaProduk, kategori, harga, funtion}
     return rupiah
   };
 
+  const convertCategory = () => {
+    const category = kategori;
+    if (category === 1) {
+      const textCategory = "Nike"
+      return textCategory
+    } else if (category ===  2){
+      const textCategory = "Adidas"
+      return textCategory
+    } else if (category ===  3){
+      const textCategory = "Puma"
+      return textCategory
+    } else if (category ===  4){
+      const textCategory = "Vans"
+      return textCategory
+    } else if (category ===  5){
+      const textCategory = "Jordan"
+      return textCategory
+    }
+  }
+
   return (
     <div className="utama">
       <Card className="cardUtama"onClick={funtion}>
-        <img className="photo-produk" src={gambarProduk} alt="produk"/>
+        <img className="photo-produk" src={`data:image/jpeg;base64,${gambarProduk}`} alt="produk"/>
         <Card.Body>
           <h6 className="nama-produk">{namaProduk}</h6>
           <Card.Text className="textCategory">
-            {kategori}
+            {convertCategory()}
           </Card.Text>
-          <Card.Text className="textPrice">
+          <Card.Text className="textPrice mb-1">
             {convertToRupiah()}
           </Card.Text>
         </Card.Body>
