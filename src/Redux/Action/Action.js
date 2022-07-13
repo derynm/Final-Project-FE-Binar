@@ -1,10 +1,12 @@
 import axios from "axios";
 import { FETCH_DATA_PRODUK, FETCH_USER_DETAIL } from "./Types";
 
+const Host = process.env.REACT_APP_HOST;
+
 function fetchDataUser(token) {
   let config = {
     method: "get",
-    url: "https://sneakers-staging.herokuapp.com/profile",
+    url: `${Host}profile`,
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -24,4 +26,27 @@ function fetchDataUser(token) {
   };
 }
 
-export { fetchDataUser };
+function fetchDataProduct() {
+  var config = {
+    method: "get",
+    url: `${Host}product/display-all`,
+    headers: {},
+  };
+
+  return async (dispatch) =>{
+    await axios(config)
+    .then(function (response) {
+      dispatch({
+        type: FETCH_DATA_PRODUK,
+        dataProduk: response
+      })
+    })
+    .catch(function (error) {
+      console.log(error);
+      alert("fetch produk gagal")
+    });
+  }
+
+}
+
+export { fetchDataUser , fetchDataProduct };
