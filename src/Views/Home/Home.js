@@ -47,6 +47,7 @@ const Home = (props) => {
         return (
           <div className="col col-lg-2 col-sm-3 col-6" key={key}>
             <CardHomePage
+              idProduk={value.idProduct}
               gambarProduk={value.img}
               namaProduk={value.productName}
               kategori={value.category}
@@ -62,6 +63,7 @@ const Home = (props) => {
           return (
             <div className="col col-lg-2 col-sm-3 col-6" key={key}>
               <CardHomePage
+                idProduk={value.idProduct}
                 gambarProduk={value.img}
                 namaProduk={value.productName}
                 kategori={value.category}

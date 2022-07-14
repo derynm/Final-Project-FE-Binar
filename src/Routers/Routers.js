@@ -6,7 +6,7 @@ import { Login } from "../Views/Auth/Login";
 import { Register } from "../Views/Auth/Register";
 import { HomeSlider } from "../Assets/Components/HomeSlider/HomeSlider";
 import { Dummy } from "../Views/Dummy";
-import { DetailProduct } from "../Views/Product/Detail-Product/DetailProduct";
+import DetailProduct from "../Views/Product/Detail-Product/DetailProduct";
 import { InfoPenawaran } from "../Views/InfoPenawaran/InfoPenawaran";
 import { NavbarBeforeLogin } from "../Assets/Components/NavBar/NavbarBeforeLogin";
 import Home from "../Views/Home/Home";
@@ -36,7 +36,7 @@ export const Routers = () => {
       <Route path="/add-product" element={<AddProduct />} />
       <Route path="/dummy" element={<Dummy />} />
 
-      <Route path="/detail-product" element={<DetailProduct />} />
+      <Route path="/detail-product/:productId" element={<DetailProduct />} />
 
       <Route path="/info-penawaran" element={<InfoPenawaran />} />
     </Routes>

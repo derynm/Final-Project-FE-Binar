@@ -11,11 +11,32 @@ export const CardDetailProduct = ({ product, category, price, role }) => {
     return rupiah
   };
 
+  const convertCategory = () => {
+    const kategori = category;
+    if (kategori === 1) {
+      const textCategory = "Nike";
+      return textCategory;
+    } else if (kategori === 2) {
+      const textCategory = "Adidas";
+      return textCategory;
+    } else if (kategori === 3) {
+      const textCategory = "Puma";
+      return textCategory;
+    } else if (kategori === 4) {
+      const textCategory = "Vans";
+      return textCategory;
+    } else if (kategori === 5) {
+      const textCategory = "Jordan";
+      return textCategory;
+    }
+  };
+
+
   return (
     <div className="card-detail-main">
       <div className="card-detail-content">
         <h5 className="card-detail-product-name">{product}</h5>
-        <p className="card-detail-product-category">{category}</p>
+        <p className="card-detail-product-category">{convertCategory()}</p>
         <p>{convertToRupiah()}</p>
         <div className="card-detail-group-button">
           {role === 1 ? (
