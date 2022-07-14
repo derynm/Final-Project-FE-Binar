@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { ButtonSell } from "../Assets/Components/Button/ButtonSell/ButtonSell";
 import { ModalDelete } from "../Assets/Components/Modal/ModalDelete";
+import { ModalOffers } from "../Assets/Components/Modal/ModalOffers";
 
 export const Dummy = () => {
   const [isClosed, setisClosed] = useState(true);
@@ -29,12 +30,12 @@ export const Dummy = () => {
 
   return (
     <div>
-      {/* {isClosed ? null : <ModalDelete closed={()=>{handleModal()}}/> }
+      {isClosed ? null : <ModalOffers closed={()=>{handleModal()}}/> }
 
       <div>aaddsdddddddddddddddddddddd</div>
-      <button onClick={()=>{handleModal()}}>cek</button> */}
+      <button onClick={()=>{handleModal()}}>cek</button>
 
-      <button onClick={() => {test()}}>coba</button>
+
     </div>
   );
 };
