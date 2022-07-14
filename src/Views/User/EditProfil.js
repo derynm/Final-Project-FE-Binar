@@ -110,7 +110,7 @@ const EditProfil = (props) => {
 
     let config = {
       method: "put",
-      url: `${Host}update/3`,
+      url: `${Host}update`,
       headers: {
         Authorization: `Bearer ${accToken}`,
         ...Headers,
