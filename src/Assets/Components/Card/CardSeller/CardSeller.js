@@ -9,7 +9,7 @@ export const CardSeller = ({ avatar, seller_name, province, city }) => {
         <div className="row">
           <div className="col-3 d-flex align-items-center justify-content-center" >
             <img
-              src={akun}
+              src={`data:image/jpeg;base64,${avatar}`}
               alt="avatar seller"
               className="card-seller-avatar"
             />
@@ -29,3 +29,31 @@ export const CardSeller = ({ avatar, seller_name, province, city }) => {
     </div>
   );
 };
+
+export const CardSellerInfo = ({avatar, seller_name, province, city}) => {
+  return (
+    <div className="card-seller-info-main">
+    <div className="card-seller-content">
+      <div className="row">
+        <div className="col-1 d-flex align-items-center" >
+          <img
+            src={akun}
+            alt="avatar seller"
+            className="card-seller-avatar"
+          />
+        </div>
+        <div className="col-11 ps-lg-4 ps-5">
+          <div className="row">
+            <div className="col-12">
+              <p className="card-seller-name">{seller_name}</p>
+            </div>
+            <div className="col-12">
+              <p className="card-seller-addres">{`${province}  ,  ${city}`}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  )
+}
