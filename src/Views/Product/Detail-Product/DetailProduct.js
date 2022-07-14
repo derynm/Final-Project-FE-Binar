@@ -5,27 +5,43 @@ import { AccordionDescription } from "../../../Assets/Components/Accordion/Accor
 import { CardDetailProduct } from "../../../Assets/Components/Card/CardDetailProduct/CardDetailProduct";
 import { CardSeller } from "../../../Assets/Components/Card/CardSeller/CardSeller";
 import { NavbarAfterLogin } from "../../../Assets/Components/NavBar/NavbarAfterLogin";
-import gambar from "../../../Assets/Img/airmax.jpg";
 import { useParams } from "react-router-dom";
-import { fetchDetailProduct } from "../../../Redux/Action/Action";
+import {
+  fetchDetailProduct,
+  fetchDataUser,
+} from "../../../Redux/Action/Action";
 import "./DetailProduct.css";
 import { LoadingAuth } from "../../../Assets/Components/Loading/LoadingAuth";
+import { NavbarBeforeLogin } from "../../../Assets/Components/NavBar/NavbarBeforeLogin";
 
 const DetailProduct = (props) => {
   const { productId } = useParams();
   const isMobile = useMediaQuery({ query: "(max-width: 426px)" });
-  const text =
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+  const status = sessionStorage.getItem("status");
 
+
+  //useEffect untuk ambil data barang dan check dalam posisi login atau tidak
   useEffect(() => {
-    const Token = sessionStorage.getItem("acc_token");
-    props.getProductDetail(productId, Token);
+    props.getProductDetail(productId);
+
+    if (status === "in") {
+      const Token = sessionStorage.getItem("acc_token");
+      props.getUserDetail(Token);
+    }
   }, []);
+
+  const checkOwner = () => {
+    if (props.detailProduct.userId === props.userDetail.userId) {
+      return true;
+    }
+  };
+
+
 
   return (
     <>
-      {console.log(props.detailProduct)}
-      <NavbarAfterLogin />
+      {status === "in" ? <NavbarAfterLogin /> : <NavbarBeforeLogin />}
+      
       <div className="detail-product-main">
         <div className="container-sm">
           {props.detailProduct.length === 0 ? (
@@ -69,10 +85,13 @@ const DetailProduct = (props) => {
                       product={props.detailProduct.productName}
                       category={props.detailProduct.category}
                       price={props.detailProduct.price}
+                      isOwner={checkOwner()}
+                      role={props.userDetail.roles?.[0]?.rolesId === 1 ? (1) : (2) }
                     />
                   </div>
                   <div className="col-12" id="card-product-seller">
                     <CardSeller
+                      avatar={props.detailProduct.imgpenjual}
                       seller_name={props.detailProduct.username}
                       province={props.detailProduct.provinsi}
                       city={props.detailProduct.kota}
@@ -91,12 +110,14 @@ const DetailProduct = (props) => {
 const mapStateToProps = (state) => {
   return {
     detailProduct: state.home.detail_produk,
+    userDetail: state.home.user_data,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getProductDetail: (id, token) => dispatch(fetchDetailProduct(id, token)),
+    getProductDetail: (id) => dispatch(fetchDetailProduct(id)),
+    getUserDetail: (token) => dispatch(fetchDataUser(token)),
   };
 };
 

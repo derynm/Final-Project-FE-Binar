@@ -6,7 +6,6 @@ import { HomeSlider } from "../../Assets/Components/HomeSlider/HomeSlider";
 import { connect } from "react-redux";
 import { CardHomePage } from "../../Assets/Components/CardHomePage/CardHomePage";
 import { NavbarAfterLogin } from "../../Assets/Components/NavBar/NavbarAfterLogin";
-import produk from "../../Assets/Data_Dummy/DataProdukDummy";
 import { NavbarBeforeLogin } from "../../Assets/Components/NavBar/NavbarBeforeLogin";
 import { fetchDataUser, fetchDataProduct } from "../../Redux/Action/Action";
 import { ButtonSell } from "../../Assets/Components/Button/ButtonSell/ButtonSell";

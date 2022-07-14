@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import "./profil.css";
+import avatar from "../../Assets/Img/avatar-account.png";
 
 const DetailProfil = (props) => {
   const navigate = useNavigate();
@@ -11,7 +12,7 @@ const DetailProfil = (props) => {
         <div className="row">
           <div className="col col-lg-4 col-sm-12 col-12 d-flex flex-column align-items-center justify-content-center profil-left">
             <img
-              src={`data:image/jpeg;base64,${props.userDetail.img}`}
+              src={props.userDetail.img === null ? (avatar):(`data:image/jpeg;base64,${props.userDetail.img}`)}
               alt="avatar-account"
               className="avatar"
             />
