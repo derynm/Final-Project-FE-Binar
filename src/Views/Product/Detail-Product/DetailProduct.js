@@ -73,7 +73,7 @@ const DetailProduct = (props) => {
                   </div>
                   <div className="col-12" id="card-product-seller">
                     <CardSeller
-                      seller_name={"Nama Penjual"}
+                      seller_name={props.detailProduct.username}
                       province={props.detailProduct.provinsi}
                       city={props.detailProduct.kota}
                     />
