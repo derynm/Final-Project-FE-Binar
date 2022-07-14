@@ -13,6 +13,7 @@ export const NavbarAfterLogin = () => {
 
   const logout = () => {
     sessionStorage.removeItem("acc_token");
+    sessionStorage.removeItem("status");
     window.location.reload(false);
   };
   return (
@@ -28,7 +29,9 @@ export const NavbarAfterLogin = () => {
               className="d-flex justify-content-between"
               style={isMobile ? { width: "400px" } : null}
             >
-              <Navbar.Brand href="#home">Sneakers</Navbar.Brand>
+              <Navbar.Brand href="#home" className="logo-after" onClick={()=>{navigate(`/`)}}>
+                Sneakers
+              </Navbar.Brand>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
             </div>
 

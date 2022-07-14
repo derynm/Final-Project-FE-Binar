@@ -21,6 +21,7 @@ function fetchDataUser(token) {
       })
       .catch(function (error) {
         alert("Sesi anda telah berakhir mohon login kembali");
+        sessionStorage.clear();
         window.location.replace(`/auth/login`);
       });
   };
@@ -48,13 +49,11 @@ function fetchDataProduct() {
   };
 }
 
-function fetchDetailProduct(id, token) {
+function fetchDetailProduct(id) {
   var config = {
     method: "get",
     url: `${Host}product/display/${id}`,
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
+    headers: {},
   };
 
   return async (dispatch) => {

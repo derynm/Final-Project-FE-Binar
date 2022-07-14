@@ -2,6 +2,12 @@
   margin-bottom: 0px !important;
 }
 
+.logo-after {
+  font-family: 'Indie Flower', cursive;
+  font-size: x-large;
+  font-weight: bolder;
+}
+
 .nav-after-edit {
   width: 400px !important;
 }
