@@ -1,14 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
+import { ModalOffers } from "../../Modal/ModalOffers";
 import "./CardDetailProduct.css";
 
 export const CardDetailProduct = ({
   product,
+  productImg,
   category,
   price,
   role,
   isOwner,
 }) => {
   const status = sessionStorage.getItem("status");
+  const [ShowModal, setShowModal] = useState(false);
+
+  const handleModal = () => {
+    setShowModal(!ShowModal);
+  };
 
   const convertToRupiah = () => {
     const numb = price;
@@ -50,7 +57,12 @@ export const CardDetailProduct = ({
             {role === 1 ? (
               <div className="row">
                 <div className="col-12">
-                  <button className="card-detail-button filled">
+                  <button
+                    className="card-detail-button filled"
+                    onClick={() => {
+                      handleModal();
+                    }}
+                  >
                     Saya tertarik dan ingin nego
                   </button>
                 </div>
@@ -71,6 +83,16 @@ export const CardDetailProduct = ({
           </div>
         ) : null}
       </div>
+      {ShowModal ? (
+        <ModalOffers
+          productImg={productImg}
+          productName={product}
+          productPrice={price}
+          closed={() => {
+            handleModal();
+          }}
+        />
+      ) : null}
     </div>
   );
 };
