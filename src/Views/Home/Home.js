@@ -10,8 +10,12 @@ import { NavbarBeforeLogin } from "../../Assets/Components/NavBar/NavbarBeforeLo
 import { fetchDataUser, fetchDataProduct } from "../../Redux/Action/Action";
 import { ButtonSell } from "../../Assets/Components/Button/ButtonSell/ButtonSell";
 import { LoadingAuth } from "../../Assets/Components/Loading/LoadingAuth";
+import { ModalWarning } from "../../Assets/Components/Modal/ModalWarning";
+import { useNavigate } from "react-router-dom";
 
 const Home = (props) => {
+  const navigate = useNavigate();
+  const [ShowModal, setShowModal] = useState(false);
   const [homeState, sethomeState] = useState({
     category: "semua",
     isLogin: true,
@@ -23,6 +27,7 @@ const Home = (props) => {
       [prop]: e.target.value,
     });
   };
+
   useEffect(() => {
     props.getDataProduct();
   }, []);
@@ -74,10 +79,31 @@ const Home = (props) => {
     }
   };
 
+  
+
+  const handleModal = () => {
+    setShowModal(!ShowModal);
+  };
+
+  const checkDataSeller = () => {
+    if (
+      props.userDetail.alamat === null &&
+      props.userDetail.provinsi === null &&
+      props.userDetail.kota === null &&
+      props.userDetail.img === null
+    ) {
+      setShowModal(true);
+
+    } else {
+      navigate(`/add-product`);
+    }
+  };
+
   return (
     <>
       <div>
-        {/* {console.log(props.dataProduct)} */}
+      {ShowModal?(<ModalWarning closed={()=>{handleModal()}}/>):(null)}
+        {console.log(props.userDetail)}
 
         {homeState.isLogin ? <NavbarAfterLogin /> : <NavbarBeforeLogin />}
         <div className="container-sm">
@@ -178,7 +204,7 @@ const Home = (props) => {
 
         <FooterComponent />
       </div>
-      {props.userDetail.roles?.[0]?.rolesId === 2 ? <ButtonSell /> : null}
+      {props.userDetail.roles?.[0]?.rolesId === 2 ? <ButtonSell fungsi={()=>{checkDataSeller()}}/> : null} 
     </>
   );
 };
