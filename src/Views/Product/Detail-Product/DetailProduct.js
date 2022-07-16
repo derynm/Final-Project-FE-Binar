@@ -83,6 +83,7 @@ const DetailProduct = (props) => {
                   <div className="col-12" id="card-product-detail">
                     <CardDetailProduct
                       product={props.detailProduct.productName}
+                      productImg={props.detailProduct.img}
                       category={props.detailProduct.category}
                       price={props.detailProduct.price}
                       isOwner={checkOwner()}

@@ -77,7 +77,7 @@ const Home = (props) => {
   return (
     <>
       <div>
-        {console.log(props.dataProduct)}
+        {/* {console.log(props.dataProduct)} */}
 
         {homeState.isLogin ? <NavbarAfterLogin /> : <NavbarBeforeLogin />}
         <div className="container-sm">
