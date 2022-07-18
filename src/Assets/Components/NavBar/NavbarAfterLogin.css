@@ -1,4 +1,11 @@
-.imageButton {
+.imageButton p {
+  margin-bottom: 0px !important;
+}
+
+.logo-after {
+  font-family: 'Indie Flower', cursive;
+  font-size: x-large;
+  font-weight: bolder;
 }
 
 .nav-after-edit {
@@ -12,7 +19,7 @@
 }
 
 @media (max-width: 426px) {
-  .imageButton {
-    margin-top: 12px;
+  .imageButton p {
+    margin-bottom: 1rem !important;
   }
 }

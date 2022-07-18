@@ -4,7 +4,7 @@ import "./Modal.css";
 export const ModalDelete = ({ closed }) => {
   return (
     <div className="base-modal d-flex justify-content-center align-items-center">
-      <div className="modal-delete d-flex justify-content-center">
+      <div className="modal-body d-flex justify-content-center">
         <div className="row d-flex justify-content-center">
           <div className="modal-text col-12 d-flex justify-content-center align-items-center">
             <p>Yakin ingin menghapus produk ?</p>

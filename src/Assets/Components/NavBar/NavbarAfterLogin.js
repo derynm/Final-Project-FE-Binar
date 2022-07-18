@@ -13,6 +13,7 @@ export const NavbarAfterLogin = () => {
 
   const logout = () => {
     sessionStorage.removeItem("acc_token");
+    sessionStorage.removeItem("status");
     window.location.reload(false);
   };
   return (
@@ -28,14 +29,16 @@ export const NavbarAfterLogin = () => {
               className="d-flex justify-content-between"
               style={isMobile ? { width: "400px" } : null}
             >
-              <Navbar.Brand href="#home">Sneakers</Navbar.Brand>
+              <Navbar.Brand href="#home" className="logo-after" onClick={()=>{navigate(`/`)}}>
+                Sneakers
+              </Navbar.Brand>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
             </div>
 
             <div className="d-flex align-items-center">
               <Navbar.Collapse id="basic-navbar-nav ">
                 <Nav
-                  className="me-auto d-flex justify-content-between"
+                  className="me-auto d-flex justify-content-between align-items-lg-center"
                   style={isMobile ? null : { width: "100px" }}
                 >
                   <div className="imageButton">
@@ -83,7 +86,7 @@ export const NavbarAfterLogin = () => {
                               <p
                                 className="dropdown-item"
                                 onClick={() => {
-                                  navigate(`/profil`);
+                                  navigate(`/profil/detail`);
                                 }}
                               >
                                 Profil

@@ -1,16 +1,18 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
 import { ReactComponent as IconAdd } from "../../../Img/add-fill.svg";
 import "./ButtonSell.css";
 
-export const ButtonSell = () => {
-    const navigate= useNavigate()
+export const ButtonSell = ({ fungsi }) => {
   return (
-<div className="button-sell-main d-flex container-fluid justify-content-center align-items-end">
-<div className="button-sell-content d-flex align-items-center" onClick={()=>{navigate(`/add-product`)}}>
-      <p className="flex-grow-1 button-sell-text">Jual</p>
-      <IconAdd />
+    <div className="button-sell-main">
+      <div
+        className="button-sell-content d-flex align-items-center"
+        onClick={fungsi}
+      >
+        <p className="flex-grow-1 button-sell-text">Jual</p>
+        <IconAdd />
+      </div>
+
     </div>
-</div>
   );
 };

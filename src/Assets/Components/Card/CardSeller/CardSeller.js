@@ -9,7 +9,7 @@ export const CardSeller = ({ avatar, seller_name, province, city }) => {
         <div className="row">
           <div className="col-3 d-flex align-items-center justify-content-center" >
             <img
-              src={akun}
+              src={`data:image/jpeg;base64,${avatar}`}
               alt="avatar seller"
               className="card-seller-avatar"
             />

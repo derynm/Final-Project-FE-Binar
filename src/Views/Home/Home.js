@@ -6,12 +6,16 @@ import { HomeSlider } from "../../Assets/Components/HomeSlider/HomeSlider";
 import { connect } from "react-redux";
 import { CardHomePage } from "../../Assets/Components/CardHomePage/CardHomePage";
 import { NavbarAfterLogin } from "../../Assets/Components/NavBar/NavbarAfterLogin";
-import produk from "../../Assets/Data_Dummy/DataProdukDummy";
 import { NavbarBeforeLogin } from "../../Assets/Components/NavBar/NavbarBeforeLogin";
-import { fetchDataUser } from "../../Redux/Action/Action";
+import { fetchDataUser, fetchDataProduct } from "../../Redux/Action/Action";
 import { ButtonSell } from "../../Assets/Components/Button/ButtonSell/ButtonSell";
+import { LoadingAuth } from "../../Assets/Components/Loading/LoadingAuth";
+import { ModalWarning } from "../../Assets/Components/Modal/ModalWarning";
+import { useNavigate } from "react-router-dom";
 
 const Home = (props) => {
+  const navigate = useNavigate();
+  const [ShowModal, setShowModal] = useState(false);
   const [homeState, sethomeState] = useState({
     category: "semua",
     isLogin: true,
@@ -25,7 +29,12 @@ const Home = (props) => {
   };
 
   useEffect(() => {
+    props.getDataProduct();
+  }, []);
+
+  useEffect(() => {
     const Token = sessionStorage.getItem("acc_token");
+
     if (!Token) {
       sethomeState({
         ...homeState,
@@ -42,8 +51,9 @@ const Home = (props) => {
         return (
           <div className="col col-lg-2 col-sm-3 col-6" key={key}>
             <CardHomePage
-              gambarProduk={value.photo}
-              namaProduk={value.title}
+              idProduk={value.idProduct}
+              gambarProduk={value.img}
+              namaProduk={value.productName}
               kategori={value.category}
               harga={value.price}
             />
@@ -52,13 +62,14 @@ const Home = (props) => {
       });
     } else {
       return data
-        .filter((value) => value.category === kategori)
+        .filter((value) => value.category === parseInt(kategori))
         .map((value, key) => {
           return (
             <div className="col col-lg-2 col-sm-3 col-6" key={key}>
               <CardHomePage
-                gambarProduk={value.photo}
-                namaProduk={value.title}
+                idProduk={value.idProduct}
+                gambarProduk={value.img}
+                namaProduk={value.productName}
                 kategori={value.category}
                 harga={value.price}
               />
@@ -68,10 +79,30 @@ const Home = (props) => {
     }
   };
 
+  
+
+  const handleModal = () => {
+    setShowModal(!ShowModal);
+  };
+
+  const checkDataSeller = () => {
+    if (
+      props.userDetail.alamat === null &&
+      props.userDetail.provinsi === null &&
+      props.userDetail.kota === null &&
+      props.userDetail.img === null
+    ) {
+      setShowModal(true);
+
+    } else {
+      navigate(`/add-product`);
+    }
+  };
+
   return (
     <>
-      {props.userDetail.roles?.[0]?.rolesId === 2 ? <ButtonSell /> : null}
       <div>
+      {ShowModal?(<ModalWarning closed={()=>{handleModal()}}/>):(null)}
         {console.log(props.userDetail)}
 
         {homeState.isLogin ? <NavbarAfterLogin /> : <NavbarBeforeLogin />}
@@ -99,7 +130,7 @@ const Home = (props) => {
                   <button
                     className="button-kategori"
                     type="button"
-                    value="nike"
+                    value={1}
                     onClick={(e) => {
                       handleState(e, "category");
                     }}
@@ -111,7 +142,7 @@ const Home = (props) => {
                   <button
                     className="button-kategori"
                     type="button"
-                    value="vans"
+                    value={4}
                     onClick={(e) => {
                       handleState(e, "category");
                     }}
@@ -123,7 +154,7 @@ const Home = (props) => {
                   <button
                     className="button-kategori"
                     type="button"
-                    value="puma"
+                    value={3}
                     onClick={(e) => {
                       handleState(e, "category");
                     }}
@@ -135,7 +166,7 @@ const Home = (props) => {
                   <button
                     className="button-kategori"
                     type="button"
-                    value="jordan"
+                    value={5}
                     onClick={(e) => {
                       handleState(e, "category");
                     }}
@@ -147,7 +178,7 @@ const Home = (props) => {
                   <button
                     className="button-kategori"
                     type="button"
-                    value="adidas"
+                    value={2}
                     onClick={(e) => {
                       handleState(e, "category");
                     }}
@@ -159,11 +190,21 @@ const Home = (props) => {
             </div>
           </div>
           <div className="home-card-grup">
-            <div className="row">{showProduk(produk, homeState.category)}</div>
+            <div className="row">
+              {props.dataProduct.length === 0 ? (
+                <div className="d-flex justify-content-center my-5">
+                  <LoadingAuth />
+                </div>
+              ) : (
+                showProduk(props.dataProduct, homeState.category)
+              )}
+            </div>
           </div>
         </div>
+
         <FooterComponent />
       </div>
+      {props.userDetail.roles?.[0]?.rolesId === 2 ? <ButtonSell fungsi={()=>{checkDataSeller()}}/> : null} 
     </>
   );
 };
@@ -171,12 +212,14 @@ const Home = (props) => {
 const mapStateToProps = (state) => {
   return {
     userDetail: state.home.user_data,
+    dataProduct: state.home.data_produk,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     getUserDetail: (token) => dispatch(fetchDataUser(token)),
+    getDataProduct: () => dispatch(fetchDataProduct()),
   };
 };
 
