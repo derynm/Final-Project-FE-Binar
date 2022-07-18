@@ -88,6 +88,7 @@ const DetailProduct = (props) => {
                       price={props.detailProduct.price}
                       isOwner={checkOwner()}
                       role={props.userDetail.roles?.[0]?.rolesId === 1 ? (1) : (2) }
+                      dataBuyyer={props.userDetail}
                     />
                   </div>
                   <div className="col-12" id="card-product-seller">
