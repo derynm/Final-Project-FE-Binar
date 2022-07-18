@@ -2,7 +2,7 @@ import React from 'react'
 import sepatu from "../../Img/airmax.jpg"
 import "./NotifHome.css"
 
-export const NotifHome = (fotoProduk,namaProduk,hargaProduk,hargaTawar) => {
+export const NotifHome = (photoProduct,productName,price,offersPrice) => {
   return (
     <>
         <div className='row notif-home-main'>
