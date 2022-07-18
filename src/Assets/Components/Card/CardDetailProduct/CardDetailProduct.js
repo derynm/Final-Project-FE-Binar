@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { ModalOffers } from "../../Modal/ModalOffers";
+import { ModalWarning } from "../../Modal/ModalWarning";
 import "./CardDetailProduct.css";
 
 export const CardDetailProduct = ({
@@ -9,12 +10,18 @@ export const CardDetailProduct = ({
   price,
   role,
   isOwner,
+  dataBuyyer,
 }) => {
   const status = sessionStorage.getItem("status");
   const [ShowModal, setShowModal] = useState(false);
+  const [ShowWarning, setShowWarning] = useState(false);
 
   const handleModal = () => {
     setShowModal(!ShowModal);
+  };
+
+  const handleWarning = () => {
+    setShowWarning(!ShowWarning);
   };
 
   const convertToRupiah = () => {
@@ -46,6 +53,19 @@ export const CardDetailProduct = ({
     }
   };
 
+  const checkDataBuyyer = () => {
+    if (
+      dataBuyyer.alamat === null &&
+      dataBuyyer.provinsi === null &&
+      dataBuyyer.kota === null &&
+      dataBuyyer.img === null
+    ) {
+      setShowWarning(true);
+    } else {
+      setShowModal(!ShowModal);
+    }
+  };
+
   return (
     <div className="card-detail-main">
       <div className="card-detail-content">
@@ -60,7 +80,7 @@ export const CardDetailProduct = ({
                   <button
                     className="card-detail-button filled"
                     onClick={() => {
-                      handleModal();
+                      checkDataBuyyer();
                     }}
                   >
                     Saya tertarik dan ingin nego
@@ -83,6 +103,13 @@ export const CardDetailProduct = ({
           </div>
         ) : null}
       </div>
+      {ShowWarning ? (
+        <ModalWarning
+          closed={() => {
+            handleWarning();
+          }}
+        />
+      ) : null}
       {ShowModal ? (
         <ModalOffers
           productImg={productImg}
