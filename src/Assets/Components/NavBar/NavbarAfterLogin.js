@@ -7,9 +7,9 @@ import alarm from "../../Img/alarm.svg";
 import user from "../../Img/user.svg";
 import { useNavigate } from "react-router-dom";
 import { NotifHome } from "../Notif/NotifHome";
+import { LoadingAuth } from "../Loading/LoadingAuth";
 
-
-export const NavbarAfterLogin = () => {
+export const NavbarAfterLogin = ({ dataTransaksi }) => {
   const isMobile = useMediaQuery({ query: "(max-width: 426px)" });
   const navigate = useNavigate();
 
@@ -20,9 +20,20 @@ export const NavbarAfterLogin = () => {
   };
 
   const showNotif = () => {
-    return <li>
-      <NotifHome/>
-    </li>;
+    return dataTransaksi
+      .filter((value) => value.status === "ditawar")
+      .map((value, index) => {
+        return (
+          <li key={index}>
+            <NotifHome
+              productName={value.productName}
+              photoProduct={value.imgproduk}
+              price={value.price}
+              offersPrice={value.tawar}
+            />
+          </li>
+        );
+      });
   };
   return (
     <div>
@@ -80,7 +91,13 @@ export const NavbarAfterLogin = () => {
                             className="dropdown-menu dropdown-menu-end"
                             aria-labelledby="dropdownMenuButton1"
                           >
-                            {showNotif()}
+                            {dataTransaksi.length <= 0 ? (
+                              <div className="d-flex justify-content-center">
+                                <LoadingAuth />
+                              </div>
+                            ) : (
+                              showNotif()
+                            )}
                           </ul>
                         </div>
                       </>

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { FETCH_DATA_PRODUK, FETCH_USER_DETAIL,FETCH_DETAIL_PRODUK } from "./Types";
+import { FETCH_DATA_PRODUK, FETCH_USER_DETAIL,FETCH_DETAIL_PRODUK, FETCH_TRANSACTION_SELLER } from "./Types";
 
 const Host = process.env.REACT_APP_HOST;
 
@@ -71,4 +71,28 @@ function fetchDetailProduct(id) {
   };
 }
 
-export { fetchDataUser, fetchDataProduct, fetchDetailProduct };
+function fetchTransactionSeller(id,token) {
+  const config = {
+    method: 'get',
+    url: `${Host}transaction/display/seller/${id}`,
+    headers: { 
+      'Authorization': `Bearer ${token}`
+    }
+  };
+  
+  return async (dispatch) => {
+    await axios(config)
+    .then(function (response) {
+      dispatch({
+        type: FETCH_TRANSACTION_SELLER,
+        transaksiSeller: response
+      })
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
+  
+}
+
+export { fetchDataUser, fetchDataProduct, fetchDetailProduct, fetchTransactionSeller };
