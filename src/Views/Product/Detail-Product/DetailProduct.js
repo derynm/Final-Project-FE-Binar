@@ -9,6 +9,7 @@ import { useParams } from "react-router-dom";
 import {
   fetchDetailProduct,
   fetchDataUser,
+  fetchTransactionSeller,
 } from "../../../Redux/Action/Action";
 import "./DetailProduct.css";
 import { LoadingAuth } from "../../../Assets/Components/Loading/LoadingAuth";
@@ -19,6 +20,16 @@ const DetailProduct = (props) => {
   const isMobile = useMediaQuery({ query: "(max-width: 426px)" });
   const status = sessionStorage.getItem("status");
 
+  useEffect(() => {
+    const Token = sessionStorage.getItem("acc_token");
+    if (Token) {
+      const timer = setTimeout(
+        () => props.getTransactionSeller(props.userDetail.userId, Token),
+        6000
+      );
+      return () => clearTimeout(timer);
+    }
+  }, [props.userDetail.userId]);
 
   //useEffect untuk ambil data barang dan check dalam posisi login atau tidak
   useEffect(() => {
@@ -36,12 +47,14 @@ const DetailProduct = (props) => {
     }
   };
 
-
-
   return (
     <>
-      {status === "in" ? <NavbarAfterLogin /> : <NavbarBeforeLogin />}
-      
+      {status === "in" ? (
+        <NavbarAfterLogin dataTransaksi={props.dataTransaksiSeller} />
+      ) : (
+        <NavbarBeforeLogin />
+      )}
+
       <div className="detail-product-main">
         <div className="container-sm">
           {props.detailProduct.length === 0 ? (
@@ -87,7 +100,7 @@ const DetailProduct = (props) => {
                       category={props.detailProduct.category}
                       price={props.detailProduct.price}
                       isOwner={checkOwner()}
-                      role={props.userDetail.roles?.[0]?.rolesId === 1 ? (1) : (2) }
+                      role={props.userDetail.roles?.[0]?.rolesId === 1 ? 1 : 2}
                       dataBuyyer={props.userDetail}
                     />
                   </div>
@@ -113,6 +126,7 @@ const mapStateToProps = (state) => {
   return {
     detailProduct: state.home.detail_produk,
     userDetail: state.home.user_data,
+    dataTransaksiSeller: state.home.transaksi_seller,
   };
 };
 
@@ -120,6 +134,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getProductDetail: (id) => dispatch(fetchDetailProduct(id)),
     getUserDetail: (token) => dispatch(fetchDataUser(token)),
+    getTransactionSeller: (id, token) =>
+      dispatch(fetchTransactionSeller(id, token)),
   };
 };
 

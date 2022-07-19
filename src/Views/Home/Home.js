@@ -7,7 +7,11 @@ import { connect } from "react-redux";
 import { CardHomePage } from "../../Assets/Components/CardHomePage/CardHomePage";
 import { NavbarAfterLogin } from "../../Assets/Components/NavBar/NavbarAfterLogin";
 import { NavbarBeforeLogin } from "../../Assets/Components/NavBar/NavbarBeforeLogin";
-import { fetchDataUser, fetchDataProduct } from "../../Redux/Action/Action";
+import {
+  fetchDataUser,
+  fetchDataProduct,
+  fetchTransactionSeller,
+} from "../../Redux/Action/Action";
 import { ButtonSell } from "../../Assets/Components/Button/ButtonSell/ButtonSell";
 import { LoadingAuth } from "../../Assets/Components/Loading/LoadingAuth";
 import { ModalWarning } from "../../Assets/Components/Modal/ModalWarning";
@@ -27,6 +31,17 @@ const Home = (props) => {
       [prop]: e.target.value,
     });
   };
+
+  useEffect(() => {
+    const Token = sessionStorage.getItem("acc_token");
+    if (Token) {
+      const timer = setTimeout(
+        () => props.getTransactionSeller(props.userDetail.userId, Token),
+        6000
+      );
+      return () => clearTimeout(timer);
+    }
+  }, [props.userDetail.userId]);
 
   useEffect(() => {
     props.getDataProduct();
@@ -79,8 +94,6 @@ const Home = (props) => {
     }
   };
 
-  
-
   const handleModal = () => {
     setShowModal(!ShowModal);
   };
@@ -93,7 +106,6 @@ const Home = (props) => {
       props.userDetail.img === null
     ) {
       setShowModal(true);
-
     } else {
       navigate(`/add-product`);
     }
@@ -102,10 +114,19 @@ const Home = (props) => {
   return (
     <>
       <div>
-      {ShowModal?(<ModalWarning closed={()=>{handleModal()}}/>):(null)}
-        {console.log(props.userDetail)}
+        {ShowModal ? (
+          <ModalWarning
+            closed={() => {
+              handleModal();
+            }}
+          />
+        ) : null}
 
-        {homeState.isLogin ? <NavbarAfterLogin /> : <NavbarBeforeLogin />}
+        {homeState.isLogin ? (
+          <NavbarAfterLogin dataTransaksi={props.dataTransaksiSeller} />
+        ) : (
+          <NavbarBeforeLogin />
+        )}
         <div className="container-sm">
           <div className="home-carousel ">
             <HomeSlider />
@@ -204,7 +225,13 @@ const Home = (props) => {
 
         <FooterComponent />
       </div>
-      {props.userDetail.roles?.[0]?.rolesId === 2 ? <ButtonSell fungsi={()=>{checkDataSeller()}}/> : null} 
+      {props.userDetail.roles?.[0]?.rolesId === 2 ? (
+        <ButtonSell
+          fungsi={() => {
+            checkDataSeller();
+          }}
+        />
+      ) : null}
     </>
   );
 };
@@ -213,6 +240,7 @@ const mapStateToProps = (state) => {
   return {
     userDetail: state.home.user_data,
     dataProduct: state.home.data_produk,
+    dataTransaksiSeller: state.home.transaksi_seller,
   };
 };
 
@@ -220,6 +248,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getUserDetail: (token) => dispatch(fetchDataUser(token)),
     getDataProduct: () => dispatch(fetchDataProduct()),
+    getTransactionSeller: (id, token) =>
+      dispatch(fetchTransactionSeller(id, token)),
   };
 };
 
