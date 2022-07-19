@@ -66,3 +66,26 @@
     font-size: 20px;
     cursor: pointer;
   }
+
+
+  .modalTwoBackground {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(200, 200, 200);
+    opacity: 90%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+  }
+
+  .imgModal {
+    width: 48px;
+    height: 48px;
+  }
+
+.btnModal {
+  max-width: 100%;
+}
