@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { ModalOffers } from "../../Modal/ModalOffers";
 import { ModalWarning } from "../../Modal/ModalWarning";
 import "./CardDetailProduct.css";
+import { useNavigate,useParams } from "react-router-dom";
 
 export const CardDetailProduct = ({
   product,
@@ -12,6 +13,8 @@ export const CardDetailProduct = ({
   isOwner,
   dataBuyyer,
 }) => {
+  const { productId } = useParams();
+  const navigate = useNavigate();
   const status = sessionStorage.getItem("status");
   const [ShowModal, setShowModal] = useState(false);
   const [ShowWarning, setShowWarning] = useState(false);
@@ -92,7 +95,12 @@ export const CardDetailProduct = ({
                 {isOwner ? (
                   <div className="row">
                     <div className="col-12">
-                      <button className="card-detail-button not-filled">
+                      <button
+                        className="card-detail-button not-filled"
+                        onClick={() => {
+                          navigate(`/edit-product/edit/${productId}`);
+                        }}
+                      >
                         Edit
                       </button>
                     </div>
