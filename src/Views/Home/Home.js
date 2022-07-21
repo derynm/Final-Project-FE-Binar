@@ -32,6 +32,7 @@ const Home = (props) => {
     });
   };
 
+//useEffect untuk fetch transaksi seller
   useEffect(() => {
     const Token = sessionStorage.getItem("acc_token");
     if (Token) {
@@ -43,6 +44,7 @@ const Home = (props) => {
     }
   }, [props.userDetail.userId]);
 
+  //useEffect untuk ambil data" produk 
   useEffect(() => {
     props.getDataProduct();
   }, []);
@@ -123,7 +125,7 @@ const Home = (props) => {
         ) : null}
 
         {homeState.isLogin ? (
-          <NavbarAfterLogin dataTransaksi={props.dataTransaksiSeller} />
+          <NavbarAfterLogin dataTransaksi={props.dataTransaksi} />
         ) : (
           <NavbarBeforeLogin />
         )}
@@ -240,7 +242,7 @@ const mapStateToProps = (state) => {
   return {
     userDetail: state.home.user_data,
     dataProduct: state.home.data_produk,
-    dataTransaksiSeller: state.home.transaksi_seller,
+    dataTransaksi: state.home.transaksi_seller,
   };
 };
 

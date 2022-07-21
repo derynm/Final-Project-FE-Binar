@@ -1,5 +1,11 @@
 import axios from "axios";
-import { FETCH_DATA_PRODUK, FETCH_USER_DETAIL,FETCH_DETAIL_PRODUK, FETCH_TRANSACTION_SELLER } from "./Types";
+import {
+  FETCH_DATA_PRODUK,
+  FETCH_USER_DETAIL,
+  FETCH_DETAIL_PRODUK,
+  FETCH_TRANSACTION_SELLER,
+  FETCH_TRANSACTION_BUYER,
+} from "./Types";
 
 const Host = process.env.REACT_APP_HOST;
 
@@ -62,7 +68,7 @@ function fetchDetailProduct(id) {
         dispatch({
           type: FETCH_DETAIL_PRODUK,
           detailProduk: response,
-        })
+        });
       })
       .catch(function (error) {
         alert("Sesi anda telah berakhir mohon login kembali");
@@ -71,28 +77,56 @@ function fetchDetailProduct(id) {
   };
 }
 
-function fetchTransactionSeller(id,token) {
+function fetchTransactionSeller(id, token) {
   const config = {
-    method: 'get',
+    method: "get",
     url: `${Host}transaction/display/seller/${id}`,
-    headers: { 
-      'Authorization': `Bearer ${token}`
-    }
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
   };
-  
+
   return async (dispatch) => {
     await axios(config)
-    .then(function (response) {
-      dispatch({
-        type: FETCH_TRANSACTION_SELLER,
-        transaksiSeller: response
+      .then(function (response) {
+        dispatch({
+          type: FETCH_TRANSACTION_SELLER,
+          transaksiSeller: response,
+        });
       })
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-  }
-  
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
 }
 
-export { fetchDataUser, fetchDataProduct, fetchDetailProduct, fetchTransactionSeller };
+function fetchTransactionBuyer(id, token) {
+  var config = {
+    method: "get",
+    url: `${Host}transaction/display/buyer/${id}`,
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  return async (dispatch) => {
+    await axios(config)
+      .then(function (response) {
+        dispatch({
+          type: FETCH_TRANSACTION_BUYER,
+          transaksiBuyer: response,
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+}
+
+export {
+  fetchDataUser,
+  fetchDataProduct,
+  fetchDetailProduct,
+  fetchTransactionSeller,
+  fetchTransactionBuyer,
+};
