@@ -1,17 +1,16 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Form } from "react-bootstrap";
 import { connect } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { NavbarSecond } from "../../../Assets/Components/NavBar/NavbarSecond";
-import "./AddProduct.css";
+import { useNavigate,useParams } from "react-router-dom";
 
-const AddProduct = (props) => {
+const EditProduk = (props) => {
+  const { productId } = useParams();
   const accToken = sessionStorage.getItem("acc_token");
   const navigate = useNavigate();
   const idUser = props.userDetail.userId;
   const Host = process.env.REACT_APP_HOST;
-  const [inputProduk, setInputProduk] = useState({
+  const [editProduk, setEditProduk] = useState({
     namaProduk: null,
     hargaProduk: null,
     kategori: null,
@@ -21,90 +20,77 @@ const AddProduct = (props) => {
     isDisabled: false,
   });
 
-  useEffect(() => {
-    if(idUser === undefined){
-      navigate(`/`)
-    }
-  }, [])
-  
-
   const handleState = (e, prop) => {
     if (prop === "fotoProduk") {
       if (e.target.files[0].size <= 1048576) {
-        setInputProduk({
-          ...inputProduk,
+        setEditProduk({
+          ...editProduk,
           [prop]: e.target.files[0],
           isFailed: true,
         });
       } else {
         alert("Ukuran file terlalu besar");
-        setInputProduk({
-          ...inputProduk,
+        setEditProduk({
+          ...editProduk,
           isFailed: true,
         });
       }
     } else {
-      setInputProduk({
-        ...inputProduk,
+      setEditProduk({
+        ...editProduk,
         [prop]: e.target.value,
       });
     }
   };
 
-  const handleSubmitProduk = () => {
+  const handleSubmitProduk = async () => {
     if (
-      (inputProduk.fotoProduk &&
-        inputProduk.namaProduk &&
-        inputProduk.hargaProduk &&
-        inputProduk.deskripsi &&
-        inputProduk.kategori) === null
+      (editProduk.fotoProduk &&
+        editProduk.namaProduk &&
+        editProduk.hargaProduk &&
+        editProduk.deskripsi &&
+        editProduk.kategori) === null
     ) {
       alert("Gagal, Harap isi semua data");
     } else {
-      InputProduk();
+      submitEditProduk();
     }
   };
 
-  //   useEffect(() => {
-  //     disableSubmitProduk();
-  //   });
-
-  const InputProduk = async () => {
-    let axios = require("axios");
-    let FormData = require("form-data");
-
-    let data = new FormData();
-    data.append("category", inputProduk.kategori);
-    data.append("productName", inputProduk.namaProduk);
-    data.append("price", inputProduk.hargaProduk);
-    data.append("description", inputProduk.deskripsi);
-    data.append("img", inputProduk.fotoProduk);
-    data.append("status", "tersedia");
-
-    let config = {
-      method: "post",
-      url: `${Host}product/${idUser}/submit`,
-      headers: {
-        Authorization: `Bearer ${accToken}`,
+  const submitEditProduk = () => {
+    var FormData = require('form-data');
+    var data = new FormData();
+    data.append('category', editProduk.kategori);
+    data.append('productName', editProduk.namaProduk);
+    data.append('price', editProduk.hargaProduk);
+    data.append('description', editProduk.deskripsi);
+    data.append('img', editProduk.fotoProduk);
+    data.append('status', "tersedia");
+    
+    var config = {
+      method: 'put',
+      url: `${Host}product/update/${productId}`,
+      headers: { 
+        'Authorization': `Bearer ${accToken}`, 
         ...Headers,
       },
-      data: data,
+      data : data
     };
-
-    await axios(config)
-      .then(function (response) {
-        alert("input produk berhasil");
-        navigate(`/`)
-      })
-      .catch(function (error) {
-        console.log(error)
-        alert("gagal");
-      });
-  };
+    
+    axios(config)
+    .then(function (response) {
+      alert("Data produk berhasil di update")
+    })
+    .catch(function (error) {
+      console.log(error);
+      alert("Data produk gagal di update")
+    });
+    
+  }
 
   return (
-    <div>
-      <NavbarSecond page={"Input Produk"} />
+    <>
+    {console.log(editProduk)}
       <div className="container add-produk-main">
         {console.log(idUser)}
         <Form.Group className="mb-4">
@@ -169,7 +155,7 @@ const AddProduct = (props) => {
               }}
             />
             <span id="foto-input-produk">
-              {inputProduk.fotoProduk !== null
+              {editProduk.fotoProduk !== null
                 ? "Ganti Gambar"
                 : "Tambah Gambar"}
             </span>
@@ -177,11 +163,11 @@ const AddProduct = (props) => {
           <p className="input-produk-note">Ukuran gambar maksimal 1MB</p>
         </Form.Group>
 
-        {inputProduk.fotoProduk !== null ? (
+        {editProduk.fotoProduk !== null ? (
           <div className="d-flex justify-content-center mb-3">
             <img
               className="preview-product"
-              src={URL.createObjectURL(inputProduk.fotoProduk)}
+              src={URL.createObjectURL(editProduk.fotoProduk)}
               alt="preview-product"
             />
           </div>
@@ -191,13 +177,13 @@ const AddProduct = (props) => {
           type="submit"
           className="col-md-12 add-produk-button"
           value="Submit"
-          disabled={inputProduk.isDisabled}
+          disabled={editProduk.isDisabled}
           onClick={() => {
             handleSubmitProduk();
           }}
         />
       </div>
-    </div>
+    </>
   );
 };
 
@@ -207,4 +193,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(AddProduct);
+export default connect(mapStateToProps)(EditProduk);
