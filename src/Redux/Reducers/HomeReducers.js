@@ -3,13 +3,14 @@ import {
   FETCH_USER_DETAIL,
   FETCH_DETAIL_PRODUK,
   FETCH_TRANSACTION_SELLER,
+  FETCH_TRANSACTION_BUYER,
 } from "../Action/Types";
 
 const initialState = {
   user_data: [],
   data_produk: [],
   detail_produk: [],
-  transaksi_seller: [],
+  data_transaksi: [],
 };
 
 const ReducerHome = (state = initialState, action) => {
@@ -35,7 +36,13 @@ const ReducerHome = (state = initialState, action) => {
     case FETCH_TRANSACTION_SELLER:
       return {
         ...state,
-        transaksi_seller: action.transaksiSeller.data,
+        data_transaksi: action.transaksiSeller.data,
+      };
+
+    case FETCH_TRANSACTION_BUYER:
+      return {
+        ...state,
+        data_transaksi: action.transaksiBuyer.data,
       };
 
     default:

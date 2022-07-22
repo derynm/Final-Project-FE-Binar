@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { NotifHome } from "../Notif/NotifHome";
 import { LoadingAuth } from "../Loading/LoadingAuth";
 
-export const NavbarAfterLogin = ({ dataTransaksi }) => {
+export const NavbarAfterLogin = ({ dataTransaksi, dataUser }) => {
   const isMobile = useMediaQuery({ query: "(max-width: 426px)" });
   const navigate = useNavigate();
 
@@ -19,8 +19,9 @@ export const NavbarAfterLogin = ({ dataTransaksi }) => {
     window.location.reload(false);
   };
 
-  const showNotif = () => {
-    return dataTransaksi
+  const showNotif = (role) => {
+    if (role === 2) {
+      return dataTransaksi
       .filter((value) => value.status === "ditawar")
       .map((value, index) => {
         return (
@@ -30,10 +31,29 @@ export const NavbarAfterLogin = ({ dataTransaksi }) => {
               photoProduct={value.imgproduk}
               price={value.price}
               offersPrice={value.tawar}
+              status={value.status}
+              role={2}
             />
           </li>
         );
       });
+    } else {
+      return dataTransaksi
+      .filter((value) => value.status === "diterima" || value.status === "ditolak")
+      .map((value, index) => {
+        return (
+          <li key={index}>
+            <NotifHome
+              productName={value.productName}
+              photoProduct={value.imgproduk}
+              price={value.price}
+              offersPrice={value.tawar}
+              status={value.status}
+            />
+          </li>
+        );
+      });
+    }
   };
   return (
     <div>
@@ -96,7 +116,10 @@ export const NavbarAfterLogin = ({ dataTransaksi }) => {
                                 <LoadingAuth />
                               </div>
                             ) : (
-                              showNotif()
+                              <>
+                                {dataUser.roles?.[0]?.rolesId === 2 ? (showNotif(2)):(showNotif(1))}
+                              </>
+                              
                             )}
                           </ul>
                         </div>

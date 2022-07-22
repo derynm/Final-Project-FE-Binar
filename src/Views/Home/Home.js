@@ -11,6 +11,7 @@ import {
   fetchDataUser,
   fetchDataProduct,
   fetchTransactionSeller,
+  fetchTransactionBuyer,
 } from "../../Redux/Action/Action";
 import { ButtonSell } from "../../Assets/Components/Button/ButtonSell/ButtonSell";
 import { LoadingAuth } from "../../Assets/Components/Loading/LoadingAuth";
@@ -32,21 +33,27 @@ const Home = (props) => {
     });
   };
 
+
+  // untuk tampil notif
+
   useEffect(() => {
     const Token = sessionStorage.getItem("acc_token");
     if (Token) {
       const timer = setTimeout(
-        () => props.getTransactionSeller(props.userDetail.userId, Token),
+        () => handleNotif(props.userDetail.roles[0].rolesId,props.userDetail.userId, Token),
         6000
       );
       return () => clearTimeout(timer);
     }
   }, [props.userDetail.userId]);
 
+  //untuk tampil list produk
+
   useEffect(() => {
     props.getDataProduct();
   }, []);
 
+  //untuk cek sudah login atau belum
   useEffect(() => {
     const Token = sessionStorage.getItem("acc_token");
 
@@ -59,6 +66,15 @@ const Home = (props) => {
       props.getUserDetail(Token);
     }
   }, []);
+
+  //tampil notif tergantung role
+  const handleNotif = (role,userid,token) => {
+    if (role === 2) {
+      props.getTransactionSeller(userid, token)
+    }else {
+      props.getTransactionBuyer(userid,token)
+    }
+  }
 
   const showProduk = (data, kategori) => {
     if (kategori === "semua") {
@@ -123,7 +139,9 @@ const Home = (props) => {
         ) : null}
 
         {homeState.isLogin ? (
-          <NavbarAfterLogin dataTransaksi={props.dataTransaksiSeller} />
+
+          <NavbarAfterLogin dataTransaksi={props.dataTransaksi} dataUser={props.userDetail} />
+
         ) : (
           <NavbarBeforeLogin />
         )}
@@ -240,7 +258,9 @@ const mapStateToProps = (state) => {
   return {
     userDetail: state.home.user_data,
     dataProduct: state.home.data_produk,
-    dataTransaksiSeller: state.home.transaksi_seller,
+
+    dataTransaksi: state.home.data_transaksi,
+
   };
 };
 
@@ -250,6 +270,8 @@ const mapDispatchToProps = (dispatch) => {
     getDataProduct: () => dispatch(fetchDataProduct()),
     getTransactionSeller: (id, token) =>
       dispatch(fetchTransactionSeller(id, token)),
+    getTransactionBuyer: (id, token) =>
+      dispatch(fetchTransactionBuyer(id, token)),
   };
 };
 
