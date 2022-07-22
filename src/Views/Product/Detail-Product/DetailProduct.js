@@ -10,6 +10,7 @@ import {
   fetchDetailProduct,
   fetchDataUser,
   fetchTransactionSeller,
+  fetchTransactionBuyer
 } from "../../../Redux/Action/Action";
 import "./DetailProduct.css";
 import { LoadingAuth } from "../../../Assets/Components/Loading/LoadingAuth";
@@ -25,7 +26,7 @@ const DetailProduct = (props) => {
     const Token = sessionStorage.getItem("acc_token");
     if (Token) {
       const timer = setTimeout(
-        () => props.getTransactionSeller(props.userDetail.userId, Token),
+        () => handleNotif(props.userDetail.roles[0].rolesId,props.userDetail.userId, Token),
         6000
       );
       return () => clearTimeout(timer);
@@ -34,13 +35,9 @@ const DetailProduct = (props) => {
 
   useEffect(() => {
     const Token = sessionStorage.getItem("acc_token");
-    const timer = setTimeout(
-      () => setisLoading(false),
-      6000
-    );
+    const timer = setTimeout(() => setisLoading(false), 6000);
     return () => clearTimeout(timer);
-  }, [])
-  
+  }, []);
 
   //useEffect untuk ambil data barang dan check dalam posisi login atau tidak
   useEffect(() => {
@@ -52,6 +49,14 @@ const DetailProduct = (props) => {
     }
   }, []);
 
+  const handleNotif = (role,userid,token) => {
+    if (role === 2) {
+      props.getTransactionSeller(userid, token)
+    }else {
+      props.getTransactionBuyer(userid,token)
+    }
+  }
+
   const checkOwner = () => {
     if (props.detailProduct.userId === props.userDetail.userId) {
       return true;
@@ -61,15 +66,14 @@ const DetailProduct = (props) => {
   return (
     <>
       {status === "in" ? (
-        <NavbarAfterLogin dataTransaksi={props.dataTransaksiSeller} />
+        <NavbarAfterLogin dataTransaksi={props.dataTransaksi}  dataUser={props.userDetail}/>
       ) : (
         <NavbarBeforeLogin />
       )}
       {isLoading ? (
         <div className="container-sm d-flex justify-content-center position-absolute top-50 start-50 translate-middle">
-        <LoadingAuth />
+          <LoadingAuth />
         </div>
-
       ) : (
         <>
           <div className="detail-product-main">
@@ -147,7 +151,8 @@ const mapStateToProps = (state) => {
   return {
     detailProduct: state.home.detail_produk,
     userDetail: state.home.user_data,
-    dataTransaksiSeller: state.home.transaksi_seller,
+    dataTransaksi: state.home.data_transaksi,
+    dataTransaksi: state.home.data_transaksi,
   };
 };
 
@@ -157,6 +162,8 @@ const mapDispatchToProps = (dispatch) => {
     getUserDetail: (token) => dispatch(fetchDataUser(token)),
     getTransactionSeller: (id, token) =>
       dispatch(fetchTransactionSeller(id, token)),
+    getTransactionBuyer: (id, token) =>
+      dispatch(fetchTransactionBuyer(id, token)),
   };
 };
 
