@@ -33,7 +33,9 @@ const Home = (props) => {
     });
   };
 
+
   // untuk tampil notif
+
   useEffect(() => {
     const Token = sessionStorage.getItem("acc_token");
     if (Token) {
@@ -46,6 +48,7 @@ const Home = (props) => {
   }, [props.userDetail.userId]);
 
   //untuk tampil list produk
+
   useEffect(() => {
     props.getDataProduct();
   }, []);
@@ -136,7 +139,9 @@ const Home = (props) => {
         ) : null}
 
         {homeState.isLogin ? (
+
           <NavbarAfterLogin dataTransaksi={props.dataTransaksi} dataUser={props.userDetail} />
+
         ) : (
           <NavbarBeforeLogin />
         )}
@@ -253,7 +258,9 @@ const mapStateToProps = (state) => {
   return {
     userDetail: state.home.user_data,
     dataProduct: state.home.data_produk,
+
     dataTransaksi: state.home.data_transaksi,
+
   };
 };
 
