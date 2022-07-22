@@ -84,12 +84,15 @@ function fetchTransactionSeller(id, token) {
     headers: {
       Authorization: `Bearer ${token}`,
     },
+
   };
+
 
   return async (dispatch) => {
     await axios(config)
       .then(function (response) {
         dispatch({
+
           type: FETCH_TRANSACTION_SELLER,
           transaksiSeller: response,
         });
@@ -109,10 +112,11 @@ function fetchTransactionBuyer(id, token) {
     },
   };
 
-  return async (dispatch) => {
-    await axios(config)
+  return (dispatch) => {
+    axios(config)
       .then(function (response) {
         dispatch({
+
           type: FETCH_TRANSACTION_BUYER,
           transaksiBuyer: response,
         });
