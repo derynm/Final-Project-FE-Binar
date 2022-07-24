@@ -7,7 +7,7 @@ import { Register } from "../Views/Auth/Register";
 import { HomeSlider } from "../Assets/Components/HomeSlider/HomeSlider";
 import { Dummy } from "../Views/Dummy";
 import DetailProduct from "../Views/Product/Detail-Product/DetailProduct";
-import { InfoPenawaran } from "../Views/InfoPenawaran/InfoPenawaran";
+import InfoPenawaran from "../Views/InfoPenawaran/InfoPenawaran";
 import { NavbarBeforeLogin } from "../Assets/Components/NavBar/NavbarBeforeLogin";
 import Home from "../Views/Home/Home";
 import Profil from "../Views/User/Profil";
