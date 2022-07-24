@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
 import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { LoadingAuth } from "../../../Assets/Components/Loading/LoadingAuth";
 import { NavbarSecond } from "../../../Assets/Components/NavBar/NavbarSecond";
 import "./AddProduct.css";
 
@@ -11,6 +12,7 @@ const AddProduct = (props) => {
   const navigate = useNavigate();
   const idUser = props.userDetail.userId;
   const Host = process.env.REACT_APP_HOST;
+  const [isLoading, setisLoading] = useState(false);
   const [inputProduk, setInputProduk] = useState({
     namaProduk: null,
     hargaProduk: null,
@@ -22,11 +24,10 @@ const AddProduct = (props) => {
   });
 
   useEffect(() => {
-    if(idUser === undefined){
-      navigate(`/`)
+    if (idUser === undefined) {
+      navigate(`/`);
     }
-  }, [])
-  
+  }, []);
 
   const handleState = (e, prop) => {
     if (prop === "fotoProduk") {
@@ -70,6 +71,7 @@ const AddProduct = (props) => {
   //   });
 
   const InputProduk = async () => {
+    setisLoading(true);
     let axios = require("axios");
     let FormData = require("form-data");
 
@@ -93,11 +95,13 @@ const AddProduct = (props) => {
 
     await axios(config)
       .then(function (response) {
+        setisLoading(false);
         alert("input produk berhasil");
-        navigate(`/`)
+        navigate(`/`);
       })
       .catch(function (error) {
-        console.log(error)
+        console.log(error);
+        setisLoading(false);
         alert("gagal");
       });
   };
@@ -187,15 +191,21 @@ const AddProduct = (props) => {
           </div>
         ) : null}
 
-        <input
-          type="submit"
-          className="col-md-12 add-produk-button"
-          value="Submit"
-          disabled={inputProduk.isDisabled}
-          onClick={() => {
-            handleSubmitProduk();
-          }}
-        />
+        {isLoading ? (
+          <div className="d-flex justify-content-center">
+            <LoadingAuth />
+          </div>
+        ) : (
+          <input
+            type="submit"
+            className="col-md-12 add-produk-button"
+            value="Submit"
+            disabled={inputProduk.isDisabled}
+            onClick={() => {
+              handleSubmitProduk();
+            }}
+          />
+        )}
       </div>
     </div>
   );

@@ -33,14 +33,18 @@ const Home = (props) => {
     });
   };
 
-
   // untuk tampil notif
 
   useEffect(() => {
     const Token = sessionStorage.getItem("acc_token");
     if (Token) {
       const timer = setTimeout(
-        () => handleNotif(props.userDetail.roles[0].rolesId,props.userDetail.userId, Token),
+        () =>
+          handleNotif(
+            props.userDetail.roles[0].rolesId,
+            props.userDetail.userId,
+            Token
+          ),
         6000
       );
       return () => clearTimeout(timer);
@@ -68,32 +72,35 @@ const Home = (props) => {
   }, []);
 
   //tampil notif tergantung role
-  const handleNotif = (role,userid,token) => {
+  const handleNotif = (role, userid, token) => {
     if (role === 2) {
-      props.getTransactionSeller(userid, token)
-    }else {
-      props.getTransactionBuyer(userid,token)
+      props.getTransactionSeller(userid, token);
+    } else {
+      props.getTransactionBuyer(userid, token);
     }
-  }
+  };
 
   const showProduk = (data, kategori) => {
     if (kategori === "semua") {
-      return data.map((value, key) => {
-        return (
-          <div className="col col-lg-2 col-sm-3 col-6" key={key}>
-            <CardHomePage
-              idProduk={value.idProduct}
-              gambarProduk={value.img}
-              namaProduk={value.productName}
-              kategori={value.category}
-              harga={value.price}
-            />
-          </div>
-        );
-      });
+      return data
+        .filter((value) => value.status === "tersedia")
+        .map((value, key) => {
+          return (
+            <div className="col col-lg-2 col-sm-3 col-6" key={key}>
+              <CardHomePage
+                idProduk={value.idProduct}
+                gambarProduk={value.img}
+                namaProduk={value.productName}
+                kategori={value.category}
+                harga={value.price}
+              />
+            </div>
+          );
+        });
     } else {
       return data
         .filter((value) => value.category === parseInt(kategori))
+        .filter((value) => value.status === "tersedia")
         .map((value, key) => {
           return (
             <div className="col col-lg-2 col-sm-3 col-6" key={key}>
@@ -139,9 +146,10 @@ const Home = (props) => {
         ) : null}
 
         {homeState.isLogin ? (
-
-          <NavbarAfterLogin dataTransaksi={props.dataTransaksi} dataUser={props.userDetail} />
-
+          <NavbarAfterLogin
+            dataTransaksi={props.dataTransaksi}
+            dataUser={props.userDetail}
+          />
         ) : (
           <NavbarBeforeLogin />
         )}
@@ -260,7 +268,6 @@ const mapStateToProps = (state) => {
     dataProduct: state.home.data_produk,
 
     dataTransaksi: state.home.data_transaksi,
-
   };
 };
 

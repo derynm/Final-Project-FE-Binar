@@ -124,17 +124,20 @@ export const NavbarAfterLogin = ({ dataTransaksi, dataUser }) => {
                                 {dataUser.roles?.[0]?.rolesId === 2
                                   ? showNotif(2)
                                   : showNotif(1)}
+                                <li
+                                  className="d-flex justify-content-center"
+                                  style={{
+                                    cursor: "pointer",
+                                    fontWeight: "bolder",
+                                  }}
+                                  onClick={() => {
+                                    navigate(`/info-penawaran`);
+                                  }}
+                                >
+                                  Info Penawaran
+                                </li> 
                               </>
                             )}
-                            <li
-                              className="d-flex justify-content-center"
-                              style={{cursor:"pointer",fontWeight:"bolder"}}
-                              onClick={() => {
-                                navigate(`/info-penawaran`);
-                              }}
-                            >
-                              Info Penawaran
-                            </li>
                           </ul>
                         </div>
                       </>
