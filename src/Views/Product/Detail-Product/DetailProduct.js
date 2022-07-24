@@ -125,6 +125,7 @@ const DetailProduct = (props) => {
                             props.userDetail.roles?.[0]?.rolesId === 1 ? 1 : 2
                           }
                           dataBuyyer={props.userDetail}
+                          productStatus={props.detailProduct.status}
                         />
                       </div>
                       <div className="col-12" id="card-product-seller">

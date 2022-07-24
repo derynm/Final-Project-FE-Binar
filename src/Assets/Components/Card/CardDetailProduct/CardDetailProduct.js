@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { ModalOffers } from "../../Modal/ModalOffers";
 import { ModalWarning } from "../../Modal/ModalWarning";
 import "./CardDetailProduct.css";
-import { useNavigate,useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 export const CardDetailProduct = ({
   product,
@@ -12,6 +12,7 @@ export const CardDetailProduct = ({
   role,
   isOwner,
   dataBuyyer,
+  productStatus,
 }) => {
   const { productId } = useParams();
   const navigate = useNavigate();
@@ -95,14 +96,20 @@ export const CardDetailProduct = ({
                 {isOwner ? (
                   <div className="row">
                     <div className="col-12">
-                      <button
-                        className="card-detail-button not-filled"
-                        onClick={() => {
-                          navigate(`/edit-product/edit/${productId}`);
-                        }}
-                      >
-                        Edit
-                      </button>
+                      {productStatus === "terjual" ? (
+                        <div className="d-flex justify-content-center"> 
+                          <h5 style={{fontWeight:"bolder"}}>Produk Telah Terjual</h5>
+                        </div>
+                      ) : (
+                        <button
+                          className="card-detail-button not-filled"
+                          onClick={() => {
+                            navigate(`/edit-product/edit/${productId}`);
+                          }}
+                        >
+                          Edit
+                        </button>
+                      )}
                     </div>
                   </div>
                 ) : null}
