@@ -1,5 +1,4 @@
 import React from "react";
-import sepatu from "../../Img/airmax.jpg";
 import "./NotifHome.css";
 
 export const NotifHome = ({
@@ -41,7 +40,7 @@ export const NotifHome = ({
                 </>
               ) : (
                 <>
-                  <p style={{fontWeight:"bolder"}}>Tawaran Ditolak</p>
+                  <p style={{fontWeight:"bolder"}}>{`Tawaran ${convertToRupiah(offersPrice)} Ditolak`}</p>
                 </>
               )}
             </>

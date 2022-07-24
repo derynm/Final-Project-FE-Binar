@@ -22,37 +22,41 @@ export const NavbarAfterLogin = ({ dataTransaksi, dataUser }) => {
   const showNotif = (role) => {
     if (role === 2) {
       return dataTransaksi
-      .filter((value) => value.status === "ditawar")
-      .map((value, index) => {
-        return (
-          <li key={index}>
-            <NotifHome
-              productName={value.productName}
-              photoProduct={value.imgproduk}
-              price={value.price}
-              offersPrice={value.tawar}
-              status={value.status}
-              role={2}
-            />
-          </li>
-        );
-      });
+        .filter((value) => value.status === "ditawar")
+        .map((value, index) => {
+          return (
+            <li key={index}>
+              <NotifHome
+                productName={value.productName}
+                photoProduct={value.imgproduk}
+                price={value.price}
+                offersPrice={value.tawar}
+                status={value.status}
+                role={2}
+              />
+            </li>
+          );
+        })
+        .reverse();
     } else {
       return dataTransaksi
-      .filter((value) => value.status === "diterima" || value.status === "ditolak")
-      .map((value, index) => {
-        return (
-          <li key={index}>
-            <NotifHome
-              productName={value.productName}
-              photoProduct={value.imgproduk}
-              price={value.price}
-              offersPrice={value.tawar}
-              status={value.status}
-            />
-          </li>
-        );
-      });
+        .filter(
+          (value) => value.status === "diterima" || value.status === "ditolak"
+        )
+        .map((value, index) => {
+          return (
+            <li key={index}>
+              <NotifHome
+                productName={value.productName}
+                photoProduct={value.imgproduk}
+                price={value.price}
+                offersPrice={value.tawar}
+                status={value.status}
+              />
+            </li>
+          );
+        })
+        .reverse();
     }
   };
   return (
@@ -117,10 +121,20 @@ export const NavbarAfterLogin = ({ dataTransaksi, dataUser }) => {
                               </div>
                             ) : (
                               <>
-                                {dataUser.roles?.[0]?.rolesId === 2 ? (showNotif(2)):(showNotif(1))}
+                                {dataUser.roles?.[0]?.rolesId === 2
+                                  ? showNotif(2)
+                                  : showNotif(1)}
                               </>
-                              
                             )}
+                            <li
+                              className="d-flex justify-content-center"
+                              style={{cursor:"pointer",fontWeight:"bolder"}}
+                              onClick={() => {
+                                navigate(`/info-penawaran`);
+                              }}
+                            >
+                              Info Penawaran
+                            </li>
                           </ul>
                         </div>
                       </>
