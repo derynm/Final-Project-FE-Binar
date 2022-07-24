@@ -69,6 +69,7 @@ export const Login = () => {
       .then(function (response) {
         setisLoading(false);
         sessionStorage.setItem("acc_token", response.data.access_token);
+        sessionStorage.setItem("status", "in")
         navigate(`/`)
       })
       .catch(function (error) {

@@ -13,6 +13,11 @@
   padding: 12px;
   box-shadow: 0px 0px 6px #dbdbdb;
   border-radius: 12px;
+  flex-grow: 1;
+}
+
+.load-detail-product {
+  height: 80vh;
 }
 
 .detail-product-description h5 {
