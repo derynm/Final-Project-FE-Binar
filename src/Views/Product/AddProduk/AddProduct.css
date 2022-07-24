@@ -47,6 +47,10 @@
     border-radius: 8px;
     padding: 8px 12px;
 }
+.input-produk-note{
+    padding: 8px 0px;
+    font-size: 12px;
+}
 
 @media (max-width: 426px) { 
     .add-produk-main {

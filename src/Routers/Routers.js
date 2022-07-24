@@ -7,13 +7,18 @@ import { Register } from "../Views/Auth/Register";
 import { HomeSlider } from "../Assets/Components/HomeSlider/HomeSlider";
 import { Dummy } from "../Views/Dummy";
 import DetailProduct from "../Views/Product/Detail-Product/DetailProduct";
-import { InfoPenawaran } from "../Views/InfoPenawaran/InfoPenawaran";
+import InfoPenawaran from "../Views/InfoPenawaran/InfoPenawaran";
 import { NavbarBeforeLogin } from "../Assets/Components/NavBar/NavbarBeforeLogin";
 import Home from "../Views/Home/Home";
 import Profil from "../Views/User/Profil";
 import EditProfil from "../Views/User/EditProfil";
 import DetailProfil from "../Views/User/DetailProfil";
+
+import EditProduk from "../Views/Product/EdfitProduk/EditProduk";
+import EditIndex from "../Views/Product/EdfitProduk/EditIndex";
+
 import DaftarJual from "../Views/DafarJual/DaftarJual";
+
 
 export const Routers = () => {
   return (
@@ -39,6 +44,11 @@ export const Routers = () => {
 
       <Route path="/detail-product/:productId" element={<DetailProduct />} />
       <Route path="/Dashboard" element={<DaftarJual/>}/>
+
+
+      <Route path="/edit-product" element={<EditIndex/>}>
+        <Route path="edit/:productId" element={<EditProduk/>}/>
+      </Route>
 
       <Route path="/info-penawaran" element={<InfoPenawaran />} />
     </Routes>

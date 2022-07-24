@@ -6,8 +6,10 @@ import list from "../../Img/list.svg";
 import alarm from "../../Img/alarm.svg";
 import user from "../../Img/user.svg";
 import { useNavigate } from "react-router-dom";
+import { NotifHome } from "../Notif/NotifHome";
+import { LoadingAuth } from "../Loading/LoadingAuth";
 
-export const NavbarAfterLogin = () => {
+export const NavbarAfterLogin = ({ dataTransaksi, dataUser }) => {
   const isMobile = useMediaQuery({ query: "(max-width: 426px)" });
   const navigate = useNavigate();
 
@@ -15,6 +17,47 @@ export const NavbarAfterLogin = () => {
     sessionStorage.removeItem("acc_token");
     sessionStorage.removeItem("status");
     window.location.reload(false);
+  };
+
+  const showNotif = (role) => {
+    if (role === 2) {
+      return dataTransaksi
+        .filter((value) => value.status === "ditawar")
+        .map((value, index) => {
+          return (
+            <li key={index}>
+              <NotifHome
+                productName={value.productName}
+                photoProduct={value.imgproduk}
+                price={value.price}
+                offersPrice={value.tawar}
+                status={value.status}
+                role={2}
+              />
+            </li>
+          );
+        })
+        .reverse();
+    } else {
+      return dataTransaksi
+        .filter(
+          (value) => value.status === "diterima" || value.status === "ditolak"
+        )
+        .map((value, index) => {
+          return (
+            <li key={index}>
+              <NotifHome
+                productName={value.productName}
+                photoProduct={value.imgproduk}
+                price={value.price}
+                offersPrice={value.tawar}
+                status={value.status}
+              />
+            </li>
+          );
+        })
+        .reverse();
+    }
   };
   return (
     <div>
@@ -29,7 +72,13 @@ export const NavbarAfterLogin = () => {
               className="d-flex justify-content-between"
               style={isMobile ? { width: "400px" } : null}
             >
-              <Navbar.Brand href="#home" className="logo-after" onClick={()=>{navigate(`/`)}}>
+              <Navbar.Brand
+                href="#home"
+                className="logo-after"
+                onClick={() => {
+                  navigate(`/`);
+                }}
+              >
                 Sneakers
               </Navbar.Brand>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -52,13 +101,58 @@ export const NavbarAfterLogin = () => {
                     {isMobile ? (
                       <p>Notifikasi</p>
                     ) : (
-                      <img src={alarm} width={20} alt="" />
+                      <>
+                        <div className="dropdown remove-icon">
+                          <p
+                            className="dropdown-toggle"
+                            id="dropdownMenuButton1"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                          >
+                            <img src={alarm} width={20} alt="" />
+                          </p>
+                          <ul
+                            className="dropdown-menu dropdown-menu-end"
+                            aria-labelledby="dropdownMenuButton1"
+                          >
+                            {dataTransaksi.length <= 0 ? (
+                              <div className="d-flex justify-content-center">
+                                <LoadingAuth />
+                              </div>
+                            ) : (
+                              <>
+                                {dataUser.roles?.[0]?.rolesId === 2
+                                  ? showNotif(2)
+                                  : showNotif(1)}
+                                <li
+                                  className="d-flex justify-content-center"
+                                  style={{
+                                    cursor: "pointer",
+                                    fontWeight: "bolder",
+                                  }}
+                                  onClick={() => {
+                                    navigate(`/info-penawaran`);
+                                  }}
+                                >
+                                  Info Penawaran
+                                </li> 
+                              </>
+                            )}
+                          </ul>
+                        </div>
+                      </>
                     )}
                   </div>
                   <div className="imageButton">
                     {isMobile ? (
                       <>
-                        <p>Profile</p>
+                        <p
+                          onClick={() => {
+                            navigate(`/profil/detail`);
+                          }}
+                        >
+                          Profile
+                        </p>
                         <p
                           onClick={() => {
                             logout();
@@ -68,7 +162,7 @@ export const NavbarAfterLogin = () => {
                         </p>
                       </>
                     ) : (
-                      <div>
+                      <>
                         <div className="dropdown remove-icon">
                           <p
                             className="dropdown-toggle"
@@ -104,7 +198,7 @@ export const NavbarAfterLogin = () => {
                             </li>
                           </ul>
                         </div>
-                      </div>
+                      </>
                     )}
                   </div>
                 </Nav>

@@ -45,6 +45,11 @@
 .offer-accept {
 }
 
+.offer-succes {
+  font-size: 12px !important;
+  color: darkgrey;
+}
+
 @media (max-width: 426px) {
   .offer-product {
     padding-left: 4px !important;

@@ -1,14 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
+import { ModalOffers } from "../../Modal/ModalOffers";
+import { ModalWarning } from "../../Modal/ModalWarning";
 import "./CardDetailProduct.css";
+import { useNavigate,useParams } from "react-router-dom";
 
 export const CardDetailProduct = ({
   product,
+  productImg,
   category,
   price,
   role,
   isOwner,
+  dataBuyyer,
 }) => {
+  const { productId } = useParams();
+  const navigate = useNavigate();
   const status = sessionStorage.getItem("status");
+  const [ShowModal, setShowModal] = useState(false);
+  const [ShowWarning, setShowWarning] = useState(false);
+
+  const handleModal = () => {
+    setShowModal(!ShowModal);
+  };
+
+  const handleWarning = () => {
+    setShowWarning(!ShowWarning);
+  };
 
   const convertToRupiah = () => {
     const numb = price;
@@ -39,6 +56,19 @@ export const CardDetailProduct = ({
     }
   };
 
+  const checkDataBuyyer = () => {
+    if (
+      dataBuyyer.alamat === null &&
+      dataBuyyer.provinsi === null &&
+      dataBuyyer.kota === null &&
+      dataBuyyer.img === null
+    ) {
+      setShowWarning(true);
+    } else {
+      setShowModal(!ShowModal);
+    }
+  };
+
   return (
     <div className="card-detail-main">
       <div className="card-detail-content">
@@ -50,7 +80,12 @@ export const CardDetailProduct = ({
             {role === 1 ? (
               <div className="row">
                 <div className="col-12">
-                  <button className="card-detail-button filled">
+                  <button
+                    className="card-detail-button filled"
+                    onClick={() => {
+                      checkDataBuyyer();
+                    }}
+                  >
                     Saya tertarik dan ingin nego
                   </button>
                 </div>
@@ -60,7 +95,12 @@ export const CardDetailProduct = ({
                 {isOwner ? (
                   <div className="row">
                     <div className="col-12">
-                      <button className="card-detail-button not-filled">
+                      <button
+                        className="card-detail-button not-filled"
+                        onClick={() => {
+                          navigate(`/edit-product/edit/${productId}`);
+                        }}
+                      >
                         Edit
                       </button>
                     </div>
@@ -71,6 +111,23 @@ export const CardDetailProduct = ({
           </div>
         ) : null}
       </div>
+      {ShowWarning ? (
+        <ModalWarning
+          closed={() => {
+            handleWarning();
+          }}
+        />
+      ) : null}
+      {ShowModal ? (
+        <ModalOffers
+          productImg={productImg}
+          productName={product}
+          productPrice={price}
+          closed={() => {
+            handleModal();
+          }}
+        />
+      ) : null}
     </div>
   );
 };
