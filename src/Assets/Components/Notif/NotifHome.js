@@ -1,5 +1,4 @@
 import React from "react";
-import sepatu from "../../Img/airmax.jpg";
 import "./NotifHome.css";
 
 export const NotifHome = ({
@@ -7,7 +6,18 @@ export const NotifHome = ({
   productName,
   price,
   offersPrice,
+  status,
+  role,
 }) => {
+
+  const convertToRupiah = (value) => {
+    const numb = value;
+    const format = numb.toString().split("").reverse().join("");
+    const convert = format.match(/\d{1,3}/g);
+    const rupiah = "Rp " + convert.join(".").split("").reverse().join("");
+
+    return rupiah;
+  };
   return (
     <>
       <div className="row notif-home-main">
@@ -16,8 +26,25 @@ export const NotifHome = ({
         </div>
         <div className="col-9">
           <p>{productName}</p>
-          <p>{price}</p>
-          <p>{`Ditawar ${offersPrice}`}</p>
+          {role === 2 ? (
+            <>
+              <p>{convertToRupiah(price)}</p>
+              <p style={{fontWeight:"bolder"}}>{`Ditawar ${convertToRupiah(offersPrice)}`}</p>
+            </>
+          ) : (
+            <>
+              {status === "diterima" ? (
+                <>
+                  <p style={{fontWeight:"bolder"}}>{`Tawaran Diterima ${convertToRupiah(offersPrice)}`}</p>
+                  <p style={{fontSize:"9px"}}>anda akan segera dihubungi penjual</p>
+                </>
+              ) : (
+                <>
+                  <p style={{fontWeight:"bolder"}}>{`Tawaran ${convertToRupiah(offersPrice)} Ditolak`}</p>
+                </>
+              )}
+            </>
+          )}
         </div>
       </div>
       <hr />
