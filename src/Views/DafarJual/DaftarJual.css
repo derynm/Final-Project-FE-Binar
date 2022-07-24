@@ -38,10 +38,17 @@
     margin-top: 20px;
     margin-left: 950px;
 }
-.border-left-card{
+.border-left-card-utama{
     margin-top: 200px;
     display: flex;
     flex-direction: row;
+    /* border: 3px solid rgb(156, 184, 57); */
+}
+.border-left-card{
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    /* border: 3px solid rgb(43, 226, 67); */
 }
 .border-left{
     /* border: 3px solid blueviolet; */
@@ -90,4 +97,7 @@
     /* border: 3px solid greenyellow; */
     width: 700px;
     height: 800px;
+}
+.button-tambahProduk{
+    margin-top: 50px;
 }

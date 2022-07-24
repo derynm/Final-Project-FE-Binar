@@ -13,13 +13,14 @@ import Home from "../Views/Home/Home";
 import Profil from "../Views/User/Profil";
 import EditProfil from "../Views/User/EditProfil";
 import DetailProfil from "../Views/User/DetailProfil";
+import DaftarJual from "../Views/DafarJual/DaftarJual";
 
 export const Routers = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/cobahomeslider" element={<HomeSlider />} />
-      <Route path="/coba" element={<NavbarBeforeLogin />} />
+      {/* <Route path="/coba" element={<DaftarJual />} /> */}
 
       {/* Auth */}
       <Route path="/auth" element={<Auth />}>
@@ -37,6 +38,7 @@ export const Routers = () => {
       <Route path="/dummy" element={<Dummy />} />
 
       <Route path="/detail-product/:productId" element={<DetailProduct />} />
+      <Route path="/Dashboard" element={<DaftarJual/>}/>
 
       <Route path="/info-penawaran" element={<InfoPenawaran />} />
     </Routes>
