@@ -8,7 +8,6 @@ import { HomeSlider } from "../Assets/Components/HomeSlider/HomeSlider";
 import { Dummy } from "../Views/Dummy";
 import DetailProduct from "../Views/Product/Detail-Product/DetailProduct";
 import InfoPenawaran from "../Views/InfoPenawaran/InfoPenawaran";
-import { NavbarBeforeLogin } from "../Assets/Components/NavBar/NavbarBeforeLogin";
 import Home from "../Views/Home/Home";
 import Profil from "../Views/User/Profil";
 import EditProfil from "../Views/User/EditProfil";
@@ -25,7 +24,7 @@ export const Routers = () => {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/cobahomeslider" element={<HomeSlider />} />
-      {/* <Route path="/coba" element={<DaftarJual />} /> */}
+
 
       {/* Auth */}
       <Route path="/auth" element={<Auth />}>
@@ -51,6 +50,8 @@ export const Routers = () => {
       </Route>
 
       <Route path="/info-penawaran" element={<InfoPenawaran />} />
+
+      <Route path="/dashboard-seller" element={<DaftarJual />} />
     </Routes>
   );
 };

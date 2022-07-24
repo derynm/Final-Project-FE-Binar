@@ -4,43 +4,37 @@ import profile from "../../Assets/Img/blank-image.jpg";
 import box from "../../Assets/Img/box.png";
 import love from "../../Assets/Img/hearth.png";
 import dollar from "../../Assets/Img/dollar.png";
-import { Button } from "react-bootstrap";
+import { Alert, Button } from "react-bootstrap";
 import { CardHomePage } from "../../Assets/Components/CardHomePage/CardHomePage";
 import { NavbarAfterLogin } from "../../Assets/Components/NavBar/NavbarAfterLogin";
 import { connect } from "react-redux";
 import { fetchDataUser } from "../../Redux/Action/Action";
+import { useNavigate } from "react-router-dom";
+import { NavbarSecond } from "../../Assets/Components/NavBar/NavbarSecond";
+import { ModalWarning } from "../../Assets/Components/Modal/ModalWarning";
 
 const DaftarJual = (props) => {
   const Host = process.env.REACT_APP_HOST;
   const status = sessionStorage.getItem("status");
   const Token = sessionStorage.getItem("acc_token");
-  const [Show, setShow] = useState(false);
+  const navigate = useNavigate();
   const [DataProduct, setDataProduct] = useState(null);
-  const [Load, setLoad] = useState(false)
-
-  useEffect(() => {
-    if(props.userDetail == {} ){
-      handleDashboard()
-    }
-  }, [setLoad]);
-
- 
-const getData=async()=>{
- await  props.getUserDetail(Token).then(
-  setLoad(true)
-
- );
-}
+  const [ShowModal, setShowModal] = useState(false);
 
   useEffect(() => {
     if (status === "in") {
       const Token = sessionStorage.getItem("acc_token");
-      getData()
-
+      handleDashboard();
     }
-    
-    {console.log(props.userDetail,"ini props")}
-   
+
+
+    if (props.userDetail.length === 0) {
+      navigate(`/`);
+    }
+
+    {
+      console.log(props.userDetail, "ini props");
+    }
   }, []);
 
   const handleDashboard = async () => {
@@ -56,33 +50,62 @@ const getData=async()=>{
 
     await axios(config)
       .then(function (response) {
-        console.log(response.data)
+        console.log(response.data);
         setDataProduct(response.data);
       })
       .catch(function (error) {
         console.log(error);
+        navigate(`/`)
       });
   };
 
   const showCard = () => {
-    console.log(DataProduct, "dataproduk")
+    console.log(DataProduct, "dataproduk");
     return DataProduct?.map((value, key) => {
-      return <div className="col col-lg-2 col-sm-3 col-6" key={key}>
-        <CardHomePage
-          idProduk={value.idProduct}
-          gambarProduk={value.img}
-          namaProduk={value.productName}
-          kategori={value.category}
-          harga={value.price}
-        />
-      </div>;
+      return (
+        <div className="col col-lg-2 col-sm-3 col-6" key={key}>
+          <CardHomePage
+            idProduk={value.idProduct}
+            gambarProduk={value.img}
+            namaProduk={value.productName}
+            kategori={value.category}
+            harga={value.price}
+          />
+        </div>
+      );
     });
   };
 
+  
+  const handleModal = () => {
+    setShowModal(!ShowModal);
+  };
+
+  const checkDataSeller = () => {
+    if (
+      props.userDetail.alamat === null &&
+      props.userDetail.provinsi === null &&
+      props.userDetail.kota === null &&
+      props.userDetail.img === null
+    ) {
+      setShowModal(true);
+    } else {
+      navigate(`/add-product`);
+    }
+  };
+
+
   return (
     <div className="daftar-jual">
-      {console.log(Show)}
-      <NavbarAfterLogin />
+            {ShowModal ? (
+          <ModalWarning
+            closed={() => {
+              handleModal();
+            }}
+          />
+        ) : null}
+      {console.log(props.userDetail)}
+      <NavbarSecond page={"Dashboard"} />
       <div className="daftar-value container-sm">
         <div className="title">
           <h1 className="h1-daftarJual">Daftar Jual Saya</h1>
@@ -98,12 +121,20 @@ const getData=async()=>{
             />
           </div>
           <div className="profile-penjual">
-            <p className="nama-penjual">Nama Penjual</p>
-            <p>Kota</p>
+            <p className="nama-penjual">{props.userDetail.username}</p>
+            <p className="daerah">{props.userDetail.kota}</p>
+            <p className="daerah">{props.userDetail.provinsi}</p>
           </div>
           <div className="cover-button-edit">
             <div className="button-edit col col-lg-2 col-sm-3 col-4">
-              <Button className="buttonEdit">Edit</Button>
+              <Button
+                className="buttonEdit"
+                onClick={() => {
+                  navigate(`/profil/detail`);
+                }}
+              >
+                Edit
+              </Button>
             </div>
           </div>
         </div>
@@ -143,17 +174,18 @@ const getData=async()=>{
               </div>
             </div>
             <div>
-              <Button className="button-tambahProduk" variant="outline-primary">
+              <Button className="button-tambahProduk" variant="outline-primary" onClick={()=>{checkDataSeller()}}>
                 Tambah Produk
               </Button>
             </div>
           </div>
-          {console.log(props.userDetail)}
-          {console.log([props.userDetail.userId])}
+          {/* {console.log(props.userDetail)}
+          {console.log([props.userDetail.userId])} */}
           {/* {console.log({handleDashboard})} */}
           {/* {Show ? handleDashboard() : null} */}
           {/* {DataProduct !== null ? showCard():(null)} */}
           {showCard()}
+          {console.log(DataProduct)}
         </div>
       </div>
     </div>
@@ -163,14 +195,7 @@ const getData=async()=>{
 const mapStateToProps = (state) => {
   return {
     userDetail: state.home.user_data,
-    dataProduct: state.home.data_produk,
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    getUserDetail: (token) => dispatch(fetchDataUser(token)),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(DaftarJual);
+export default connect(mapStateToProps)(DaftarJual);

@@ -137,6 +137,7 @@ const Home = (props) => {
   return (
     <>
       <div>
+      {console.log(props.userDetail)}
         {ShowModal ? (
           <ModalWarning
             closed={() => {
