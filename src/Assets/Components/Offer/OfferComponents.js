@@ -124,7 +124,7 @@ export const OfferComponents = ({ dataTransaction, dataUser }) => {
           </div>
         </div>
         <div className="offer-button-group d-flex justify-content-end">
-          {dataTransaction.status === "ditawar" ? (
+          {dataTransaction.status === "ditawar" && dataUser.roles[0].rolesId === 2? (
             <>
               <button
                 className="offer-button offer-decline not-filled"
