@@ -93,7 +93,13 @@ export const NavbarAfterLogin = ({ dataTransaksi, dataUser }) => {
                   {dataUser.roles?.[0]?.rolesId === 2 ? (
                     <div className="imageButton">
                       {isMobile ? (
-                        <p>DaftarJual</p>
+                        <p
+                          onClick={() => {
+                            navigate(`/dashboard-seller`);
+                          }}
+                        >
+                          DaftarJual
+                        </p>
                       ) : (
                         <img
                           src={list}
@@ -109,7 +115,17 @@ export const NavbarAfterLogin = ({ dataTransaksi, dataUser }) => {
 
                   <div className="imageButton">
                     {isMobile ? (
-                      <p>Info Penawaran</p>
+                      <>
+                        {dataTransaksi.length === 0 ? null : (
+                          <p
+                            onClick={() => {
+                              navigate(`/info-penawaran`);
+                            }}
+                          >
+                            Info Penawaran
+                          </p>
+                        )}
+                      </>
                     ) : (
                       <>
                         <div className="dropdown remove-icon">
@@ -127,7 +143,7 @@ export const NavbarAfterLogin = ({ dataTransaksi, dataUser }) => {
                           >
                             {dataTransaksi.length <= 0 ? (
                               <div className="d-flex justify-content-center">
-                                <LoadingAuth />
+                                Tidak ada notifikasi
                               </div>
                             ) : (
                               <>
