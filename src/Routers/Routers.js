@@ -12,11 +12,11 @@ import Home from "../Views/Home/Home";
 import Profil from "../Views/User/Profil";
 import EditProfil from "../Views/User/EditProfil";
 import DetailProfil from "../Views/User/DetailProfil";
+import { DaftarJual } from "../Views/DaftarJual/DaftarJual";
 
 import EditProduk from "../Views/Product/EdfitProduk/EditProduk";
 import EditIndex from "../Views/Product/EdfitProduk/EditIndex";
 
-import DaftarJual from "../Views/DafarJual/DaftarJual";
 
 
 export const Routers = () => {
@@ -24,7 +24,7 @@ export const Routers = () => {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/cobahomeslider" element={<HomeSlider />} />
-
+      <Route path="/coba" element={<DaftarJual />} />
 
       {/* Auth */}
       <Route path="/auth" element={<Auth />}>
